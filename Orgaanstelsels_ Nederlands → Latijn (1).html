@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Orgaanstelsels: Nederlands → Latijn</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+:root{--bg:#e9eef3;--card:#fbfcfd;--ink:#1a2a3c;--mute:#5a6b7c;--line:#c7d3de;--art:#b0243a;--vein:#2a5f9e;--okbg:#e1f2e8;--ok:#1b7447;--badbg:#fae3e5;--bad:#b0243a;--glow:rgba(176,36,58,.12);--fp:#663366;--fm:#E5007D;--fb:#0076E0;--fg:rgba(102,51,102,.10);--ico:.13;--vessel:.22;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1522;--card:#12223a;--ink:#e9eef4;--mute:#97a9bd;--line:#2a4160;--art:#ef5a70;--vein:#6aa6ec;--okbg:#12382b;--ok:#6fd49c;--badbg:#411c24;--bad:#ff8c9b;--glow:rgba(239,90,112,.16);--fp:#c08fc0;--fm:#ff5fae;--fb:#5aaaff;--fg:rgba(102,51,102,.42);--ico:.15;--vessel:.35}}
+:root[data-theme="dark"]{--bg:#0b1522;--card:#12223a;--ink:#e9eef4;--mute:#97a9bd;--line:#2a4160;--art:#ef5a70;--vein:#6aa6ec;--okbg:#12382b;--ok:#6fd49c;--badbg:#411c24;--bad:#ff8c9b;--glow:rgba(239,90,112,.16);--fp:#c08fc0;--fm:#ff5fae;--fb:#5aaaff;--fg:rgba(102,51,102,.42);--ico:.15;--vessel:.35}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px);min-height:100%}
+body{margin:0;min-height:100vh;background:radial-gradient(900px 500px at 85% -10%,var(--glow),transparent 60%),radial-gradient(820px 560px at -8% 108%,var(--fg),transparent 62%),radial-gradient(520px 360px at 100% 100%,var(--fg),transparent 70%),var(--bg);color:var(--ink);font:17px/1.5 "Source Sans 3",system-ui,sans-serif}
+body::before{content:"";position:fixed;top:0;left:0;right:0;height:4px;z-index:3;pointer-events:none;background:linear-gradient(90deg,#663366,#E5007D,#0076E0)}
+#icons{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:var(--ico);-webkit-mask-image:radial-gradient(ellipse 62% 56% at 50% 46%,transparent 28%,#000 100%);mask-image:radial-gradient(ellipse 62% 56% at 50% 46%,transparent 28%,#000 100%)}
+#icons g{fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+#icons .p{stroke:var(--fp)}#icons .m{stroke:var(--fm)}#icons .b{stroke:var(--fb)}
+#veins{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;opacity:var(--vessel);z-index:0}
+#veins path{fill:none;stroke-linecap:round}
+main{position:relative;z-index:1;max-width:640px;margin:0 auto;padding:22px 16px 48px}
+header{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px}
+h1{font:700 1.9rem/1.05 "Cormorant Garamond",Georgia,serif;margin:0}
+.sub{color:var(--mute);font-size:.95rem;margin:4px 0 0}
+#ecg{flex:none;width:min(112px,28vw);height:auto;opacity:.55}
+#ecg path{fill:none;stroke:var(--art);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1 1.01;stroke-dashoffset:1}
+@media (prefers-reduced-motion:reduce){#ecg path{stroke-dasharray:none;stroke-dashoffset:0}}
+.card{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--art);border-radius:6px;padding:22px;box-shadow:0 10px 30px -18px rgba(0,0,0,.5)}
+.bar{height:5px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:8px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--vein),var(--art));transition:width .3s}
+.meta{display:flex;justify-content:space-between;gap:10px;color:var(--mute);font-size:.88rem;margin-bottom:16px}
+.q{font:700 2.1rem/1.1 "Cormorant Garamond",Georgia,serif;margin:2px 0 4px;overflow-wrap:anywhere}
+.hint{color:var(--mute);margin:0 0 18px;font-size:.95rem}
+.opts{display:grid;gap:9px}
+.opt{display:flex;gap:13px;align-items:center;width:100%;text-align:left;padding:13px 15px;font:inherit;font-size:1.05rem;color:inherit;background:transparent;border:1.5px solid var(--line);border-radius:6px;cursor:pointer;transition:border-color .15s,background .15s}
+.opt:hover:not(:disabled){border-color:var(--vein)}
+.opt:focus-visible,.btn:focus-visible{outline:3px solid var(--vein);outline-offset:2px}
+.opt b{flex:none;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--vein);color:var(--vein);display:grid;place-items:center;font-size:.85rem}
+.opt:disabled{cursor:default}
+.opt.ok{background:var(--okbg);border-color:var(--ok)}
+.opt.bad{background:var(--badbg);border-color:var(--bad)}
+.opt.ok b{background:var(--ok);border-color:var(--ok);color:var(--card)}
+.opt.bad b{background:var(--bad);border-color:var(--bad);color:var(--card)}
+.fb{min-height:1.5em;margin:15px 0 0;font-weight:600}
+.fb.ok{color:var(--ok)}.fb.bad{color:var(--bad)}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.btn{font:inherit;font-weight:600;padding:11px 22px;border-radius:6px;border:1.5px solid var(--art);background:var(--art);color:#fff;cursor:pointer}
+.score{font:700 3.4rem/1 "Cormorant Garamond",Georgia,serif;margin:4px 0}
+ul.miss{padding:0;margin:10px 0 0;list-style:none;border-top:1px solid var(--line)}
+ul.miss li{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--line)}
+ul.miss span:last-child{font-weight:600;text-align:right}
+p{margin:8px 0}.mute{color:var(--mute)}
+.seal{display:flex;align-items:center;gap:12px;margin-top:20px;color:var(--mute);font-size:.88rem;line-height:1.35}
+.seal svg{flex:none;width:58px;height:58px}
+.seal b{color:var(--ink);font-weight:600}
+#confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:60}
+.btn.alt{background:transparent;color:var(--art)}
+.pop{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:16px;overflow:auto;background:rgba(5,12,22,.62)}
+.dlg{position:relative;width:min(420px,100%);background:var(--card);border:1px solid var(--line);border-top:4px solid var(--art);border-radius:8px;padding:26px 22px 22px;text-align:center;box-shadow:0 24px 60px -20px rgba(0,0,0,.7);animation:rise .3s ease-out}
+@keyframes rise{from{transform:translateY(14px) scale(.97);opacity:0}}
+@media (prefers-reduced-motion:reduce){.dlg{animation:none}}
+.x{position:absolute;top:6px;right:6px;width:42px;height:42px;border:0;border-radius:6px;background:transparent;color:var(--mute);font-size:1.9rem;line-height:1;cursor:pointer}
+.x:hover{color:var(--ink)}.x:focus-visible{outline:3px solid var(--vein)}
+.medal{display:block;width:104px;height:auto;margin:0 auto 8px}
+.medal .off{fill:none;stroke:var(--line);stroke-width:3;stroke-dasharray:6 5}
+.dlg h2{font:700 1.8rem/1.1 "Cormorant Garamond",Georgia,serif;margin:4px 0 0}
+.grade{font:700 4.4rem/1 "Cormorant Garamond",Georgia,serif;color:var(--art);margin:8px 0 0}
+.dlg .row{justify-content:center}
+.dlg small{display:block;color:var(--mute);font-size:.82rem;margin-top:14px}
+</style>
+</head>
+<body>
+<canvas id="confetti" aria-hidden="true"></canvas>
+<svg id="icons" aria-hidden="true"><defs><pattern id="ic" width="360" height="360" patternUnits="userSpaceOnUse">
+<g class="p" transform="translate(30 24) scale(1.15) rotate(-6 24 24)"><path d="M6 44V14C6 6 12 3 20 3H28C36 3 42 6 42 14V35C42 41 38 44 33 44C28 44 25 41 27 37"/><path d="M13 40V15C13 11 16 10 20 10H28C32 10 35 11 35 15V34C35 36 33 37 32 37"/></g>
+<g class="b" transform="translate(140 54) scale(1.1) rotate(8 24 24)"><path d="M24 46V30M24 30C20 24 13 22 8 14M24 30C28 24 35 22 40 14M24 30V6M24 22C19 20 17 16 15 12M24 22C29 20 31 16 33 12M24 14C21 12 20 9 20 6"/></g>
+<g class="p" transform="translate(250 22) scale(1.15) rotate(5 24 24)"><path d="M15 2V16"/><path d="M21 2V12"/><path d="M21 12C30 8 42 12 42 24C42 36 34 44 24 43C16 42 9 38 8 32"/><path d="M15 16C14 22 14 29 18 34C20 36 24 37 27 37"/></g>
+<g class="b" transform="translate(56 140) scale(1.1) rotate(-10 24 24)"><path d="M8 9H36C43 9 43 18 36 18H12C5 18 5 27 12 27H36C43 27 43 36 36 36H12C5 36 5 43 12 43H30"/></g>
+<g class="p" transform="translate(172 160) scale(1.15) rotate(7 24 24)"><path d="M4 16C4 11 9 9 15 9H34C41 9 45 13 44 20C42 30 30 38 16 38C8 38 4 30 4 22Z"/><path d="M32 12L24 22L13 28M24 22L28 32M24 22L19 16"/></g>
+<g class="m" transform="translate(280 140) scale(1.1) rotate(-5 24 24)"><path d="M28 5C18 4 10 10 10 20C10 30 16 40 26 42C32 43 34 38 30 34C26 30 28 26 32 24C36 22 36 7 28 5Z"/><path d="M44 2V46"/><path d="M30 28H44M31 32H44"/></g>
+<g class="m" transform="translate(28 262) scale(1.1) rotate(6 24 24)"><path d="M24 2V24M24 24L11 45M24 24L37 45M24 10L14 14M24 10L34 14M24 17L16 21M24 17L32 21"/></g>
+<g class="p" transform="translate(148 268) scale(1.15) rotate(-4 24 24)"><path d="M24 3V45"/><path d="M20 8H28M20 16H28M20 24H28M20 32H28M20 40H28"/><path d="M24 8C14 8 8 14 6 22M24 8C34 8 40 14 42 22M24 16C14 16 8 22 8 30M24 16C34 16 40 22 40 30M24 24C16 24 11 29 11 36M24 24C32 24 37 29 37 36"/></g>
+<g class="p" transform="translate(262 262) scale(1.1) rotate(9 24 24)"><path d="M3 22C3 16 11 17 17 19C25 21 31 15 38 12C43 11 44 18 40 21C32 27 24 29 15 28C8 28 3 27 3 22Z"/><path d="M30 36C30 31 41 31 43 37C43 43 35 45 30 41Z"/></g>
+</pattern></defs><rect width="100%" height="100%" fill="url(#ic)"/></svg>
+<svg id="veins" viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+<g stroke="var(--art)" stroke-width="2.4"><path d="M820 40C700 60 640 140 600 250S520 420 430 470"/><path d="M600 250C560 240 500 250 470 210"/><path d="M640 140C690 190 700 260 760 300"/><path d="M520 400C560 450 560 520 520 580"/></g>
+<g stroke="var(--vein)" stroke-width="2.4"><path d="M-20 980C100 940 170 860 210 760S300 590 380 540"/><path d="M210 760C250 770 310 760 340 800"/><path d="M170 860C120 840 80 780 20 760"/><path d="M290 620C250 570 250 500 290 440"/></g>
+</svg>
+<main>
+<header><div><h1>Orgaanstelsels</h1><p class="sub">Kies de juiste Latijnse naam</p></div>
+<svg id="ecg" viewBox="0 0 160 44" aria-hidden="true"><path pathLength="1" d="M0 36H56L61 36L66 10L72 42L79 18L84 36H160"/></svg></header>
+<div id="app"></div>
+<footer class="seal"><svg viewBox="0 0 100 100" role="img" aria-label="MBRT studentenquiz"><path d="M16 14H84V52Q84 78 50 90Q16 78 16 52Z" fill="var(--card)" stroke="var(--art)" stroke-width="4"/><path d="M24 52H38L43 42L49 64L55 36L60 52H76" fill="none" stroke="var(--art)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><text x="50" y="73" text-anchor="middle" font-size="13" letter-spacing=".6" fill="var(--mute)" font-family="'Source Sans 3',system-ui,sans-serif">Fontys</text></svg><span><b>MBRT studentenquiz</b><br>Gecontroleerd door een MBRT-student · oefenmateriaal</span></footer>
+
+</main>
+<script>
+// [Nederlandse naam, toelichting, juiste Latijnse naam, groep]
+// Groep: t = Tractus-namen, s = systeemnamen, x = alles. De foute opties komen uit de juiste antwoorden van dezelfde groep.
+const D=[
+["Huid","Huid, haar, zweet- en talgklieren, nagels","Integumentum","x"],
+["Bewegingsstelsel","Kies de naam met Tractus. Botten, kraakbeen, spieren","Tractus locomotorius","t"],
+["Bewegingsstelsel","Kies de systeemnaam. Botten, kraakbeen, spieren","Musculoskeletaal systeem","s"],
+["Zenuwstelsel","Kies de naam met Tractus. Hersenen, ruggenmerg, zenuwen","Tractus neurologicus","t"],
+["Hormoonstelsel","Kies de systeemnaam. Hypofyse, schildklier, bijnieren, alvleesklier, geslachtsklieren","Endocriene stelsel","s"],
+["Hart- en vaatstelsel","Kies de naam met Tractus. Hart, slagaders, aders, haarvaten","Tractus circulatorius","t"],
+["Hart- en vaatstelsel","Kies de systeemnaam. Hart, slagaders, aders, haarvaten","Cardiovasculaire stelsel","s"],
+["Lymfatisch en afweersysteem","Kies de systeemnaam. Milt, thymus, lymfevaten en lymfeklieren","Lymfestelsel en immuunsysteem","s"],
+["Ademhalingsstelsel","Kies de naam met Tractus. Neus- en keelholte, longen, trachea, bronchiën","Tractus respiratorius","t"],
+["Ademhalingsstelsel","Kies de systeemnaam. Neus- en keelholte, longen, trachea, bronchiën","Respiratoir systeem","s"],
+["Spijsverteringsstelsel","Kies de naam met Tractus. Mond, slokdarm, maag, darmen, lever, galblaas, alvleesklier","Tractus digestivus","t"],
+["Spijsverteringsstelsel","Kies de systeemnaam. Mond, slokdarm, maag, darmen, lever, galblaas, alvleesklier","Gastrointestinale stelsel","s"],
+["Urinewegstelsel","Kies de naam met Tractus. Nieren, urineleiders, blaas, urinebuis","Tractus uropoeticus","t"],
+["Urinewegstelsel","Kies de systeemnaam. Nieren, urineleiders, blaas, urinebuis","Urinaire stelsel","s"]
+].map(([q,h,a,g])=>({q,h,a,g}));
+const G={t:[],s:[],x:D.map(d=>d.a)};
+D.forEach(d=>{if(d.g!=="x")G[d.g].push(d.a)});
+
+const app=document.getElementById("app");
+let deck,pos,score,done,total,missed,tried,locked,cur;
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+
+function start(){
+  app.innerHTML=`<div class="card"><p>Je krijgt de Nederlandse naam van een orgaanstelsel en kiest uit vier Latijnse namen de juiste. De foute opties zijn echte antwoorden uit deze quiz. Bij stelsels met twee Latijnse namen krijg je beide.</p><p class="mute">${D.length} vragen. Toetsenbord: 1–4 om te kiezen, Enter voor de volgende vraag. Fout beantwoorde vragen komen terug tot je ze goed hebt.</p><div class="row"><button class="btn" id="go">Start de quiz</button></div></div>`;
+  document.getElementById("go").onclick=run;
+}
+function run(){deck=shuffle(D);pos=0;score=0;done=0;total=D.length;missed=[];tried=new Set();show()}
+
+function show(){
+  const it=deck[pos];locked=false;cur={it,opts:shuffle([{t:it.a,ok:true},...shuffle(G[it.g].filter(x=>x!==it.a)).slice(0,3).map(t=>({t,ok:false}))])};
+  app.innerHTML=`<div class="card"><div class="bar"><i style="width:${Math.round(done/total*100)}%"></i></div>
+  <div class="meta"><span>Goed beantwoord: ${done} van ${total}${tried.has(it)?" · herhaling":""}</span><span>Nog te gaan: ${deck.length-pos}</span></div>
+  <div class="q">${it.q}</div><p class="hint">${it.h}</p>
+  <div class="opts">${cur.opts.map((o,i)=>`<button class="opt" data-i="${i}"><b>${i+1}</b><span>${o.t}</span></button>`).join("")}</div>
+  <p class="fb" id="fb" aria-live="polite"></p><div class="row" id="nx"></div></div>`;
+  app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>pick(+b.dataset.i));
+}
+
+function pick(i){
+  if(locked)return;locked=true;
+  const it=cur.it,right=cur.opts[i].ok,good=it.a,first=!tried.has(it);
+  tried.add(it);
+  if(right){done++;if(first)score++}
+  else{
+    if(first)missed.push({q:it.q+(it.h.startsWith("Kies de")?" ("+it.h.split(".")[0].replace("Kies de ","")+")":""),a:good});
+    deck.splice(Math.min(deck.length,pos+3+Math.floor(Math.random()*3)),0,it);
+  }
+  app.querySelectorAll(".opt").forEach((b,j)=>{b.disabled=true;if(cur.opts[j].ok)b.classList.add("ok");else if(j===i)b.classList.add("bad")});
+  const fb=document.getElementById("fb");
+  fb.className="fb "+(right?"ok":"bad");
+  const o=D.find(d=>d.a===cur.opts[i].t);
+  fb.textContent=right?"Goed!":"Niet juist. Het antwoord is: "+good+". "+cur.opts[i].t+" hoort bij: "+o.q.toLowerCase()+". Deze vraag komt straks terug.";
+  const last=pos===deck.length-1&&right;
+  document.getElementById("nx").innerHTML=`<button class="btn" id="next">${last?"Bekijk resultaat":"Volgende vraag"}</button>`;
+  const n=document.getElementById("next");n.focus();n.onclick=()=>{pos++;pos<deck.length?show():end()};
+}
+
+function end(){
+  app.innerHTML=`<div class="card"><div class="bar"><i style="width:100%"></i></div>
+  <p class="mute">Resultaat · cijfer ${gradeStr()}</p><div class="score">${score} / ${total}</div><p>${Math.round(score/total*100)}% in één keer goed. Alle vragen heb je uiteindelijk goed beantwoord.</p>
+  ${missed.length?`<p class="mute">Eerste keer fout:</p><ul class="miss">${missed.map(m=>`<li><span>${m.q}</span><span>${m.a}</span></li>`).join("")}</ul>`:`<p>Alles in één keer goed. Sterk gedaan.</p>`}
+  <div class="row"><button class="btn" id="ra">Opnieuw</button><button class="btn alt" id="rs">Bekijk je cijfer</button></div></div>`;
+  document.getElementById("ra").onclick=run;
+  document.getElementById("rs").onclick=showResult;
+  showResult();confetti(score===total?240:130);
+}
+
+const gradeStr=()=>(1+9*score/total).toFixed(1).replace(".",",");
+const medalSVG=on=>on?`<svg class="medal" viewBox="0 0 120 150" role="img" aria-label="Medaille"><defs><linearGradient id="gd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbe38a"/><stop offset="1" stop-color="#d49a1a"/></linearGradient></defs><path d="M30 0h22l14 52H44z" fill="#2a5f9e"/><path d="M90 0H68L54 52h22z" fill="#b0243a"/><circle cx="60" cy="94" r="44" fill="url(#gd)" stroke="#a87b1a" stroke-width="3"/><circle cx="60" cy="94" r="35" fill="none" stroke="#fff6cf" stroke-width="2" opacity=".8"/><text x="60" y="95" text-anchor="middle" dominant-baseline="central" font-family="'Cormorant Garamond',Georgia,serif" font-weight="700" font-size="23" textLength="56" lengthAdjust="spacingAndGlyphs" fill="#8a1f33">MBRT</text></svg>`
+:`<svg class="medal" viewBox="0 0 120 150" role="img" aria-label="Medaille nog te verdienen"><path class="off" d="M30 0h22l14 52H44zM90 0H68L54 52h22z"/><circle class="off" cx="60" cy="94" r="44"/><text x="60" y="95" text-anchor="middle" dominant-baseline="central" font-family="'Cormorant Garamond',Georgia,serif" font-weight="700" font-size="23" textLength="56" lengthAdjust="spacingAndGlyphs" fill="var(--line)">MBRT</text></svg>`;
+
+function closePop(){const e=document.getElementById("pop");if(e)e.remove();const b=document.getElementById("rs");if(b)b.focus()}
+function showResult(){
+  closePop();
+  const win=score===total,el=document.createElement("div");
+  el.id="pop";el.className="pop";
+  el.innerHTML=`<div class="dlg" role="dialog" aria-modal="true" aria-labelledby="pt"><button class="x" id="px" aria-label="Sluiten">×</button>${medalSVG(win)}
+  <h2 id="pt">${win?"Medaille behaald!":"Nog geen medaille"}</h2>
+  <div class="grade">${gradeStr()}</div><p>${score} van ${total} vragen in één keer goed</p>
+  <p>${win?"Alle vragen in één keer goed. Je hebt de medaille verdiend.":"Oefen nog een keer en beantwoord alles in één keer goed om een medaille te verdienen."}</p>
+  <div class="row"><button class="btn" id="pa">Opnieuw oefenen</button><button class="btn alt" id="pc">Sluiten</button></div>
+  <small>Cijfer = 1 + 9 × score ÷ totaal</small></div>`;
+  document.body.appendChild(el);
+  el.onclick=e=>{if(e.target===el)closePop()};
+  document.getElementById("px").onclick=closePop;
+  document.getElementById("pc").onclick=closePop;
+  document.getElementById("pa").onclick=()=>{closePop();run()};
+  document.getElementById("pc").focus();
+}
+
+function confetti(n){
+  if(matchMedia("(prefers-reduced-motion:reduce)").matches)return;
+  const c=document.getElementById("confetti"),x=c.getContext("2d"),d=devicePixelRatio||1,W=innerWidth,H=innerHeight;
+  c.width=W*d;c.height=H*d;x.scale(d,d);
+  const cols=["#ef5a70","#6aa6ec","#f2c14e","#6fd49c","#e9eef4"];
+  const ps=Array.from({length:n},()=>({x:Math.random()*W,y:-20-Math.random()*H*.7,w:6+Math.random()*6,h:9+Math.random()*8,vy:2+Math.random()*3,vx:(Math.random()-.5)*1.4,r:Math.random()*6.28,vr:(Math.random()-.5)*.25,s:Math.random()*6.28,c:cols[Math.floor(Math.random()*cols.length)]}));
+  (function f(){
+    x.clearRect(0,0,W,H);let alive=0;
+    ps.forEach(p=>{p.y+=p.vy;p.s+=.05;p.x+=p.vx+Math.sin(p.s);p.r+=p.vr;
+      if(p.y<H+30){alive++;x.save();x.translate(p.x,p.y);x.rotate(p.r);x.fillStyle=p.c;x.fillRect(-p.w/2,-p.h/2,p.w,p.h);x.restore()}});
+    if(alive)requestAnimationFrame(f);else x.clearRect(0,0,W,H);
+  })();
+}
+
+document.addEventListener("keydown",e=>{
+  if(e.metaKey||e.ctrlKey||e.altKey)return;
+  if(document.getElementById("pop")){if(e.key==="Escape")closePop();return}
+  if(!locked&&cur&&document.querySelector(".opt")){if(/^[1-4]$/.test(e.key))pick(+e.key-1)}
+  else if(locked&&e.key==="Enter"&&document.activeElement.id!=="next"){const n=document.getElementById("next");if(n)n.click()}
+});
+// Hartslag: elke zesde slag tekent de lijn de letters MBRT
+(function(){
+  const el=document.querySelector("#ecg path");
+  const N="M0 36H56L61 36L66 10L72 42L79 18L84 36H160";
+  const L="M0 36H17Q20 36 20 33V14Q20 7 26 12L29 17Q30 19 31 17L34 12Q38 7 38 14V33Q38 36 41 36H42Q44 36 44 34V10Q44 8 46 8H52C58 8 58 22 52 22H44H53C60 22 60 36 53 36H44H64Q66 36 66 34V10Q66 8 68 8H74C80 8 80 22 74 22H66H71Q76 24 82 36H94Q97 36 97 33V8H91Q88 8 88 11Q88 8 91 8H103Q106 8 106 11Q106 8 103 8H97V33Q97 36 100 36H160";
+  if(matchMedia("(prefers-reduced-motion:reduce)").matches||!el.animate){el.setAttribute("d",N);return}
+  let n=0,prev;
+  (function beat(){
+    const m=++n%6===0;
+    el.setAttribute("d",m?L:N);
+    el.style.strokeDasharray=m?"1 1.01":".45 1.01";
+    const k=m?[{strokeDashoffset:1,opacity:1,offset:0},{strokeDashoffset:0,opacity:1,offset:.45},{strokeDashoffset:0,opacity:1,offset:.8},{strokeDashoffset:0,opacity:0,offset:1}]
+             :[{strokeDashoffset:.45,opacity:1},{strokeDashoffset:-1.01,opacity:1}];
+    const a=el.animate(k,{duration:m?10000:1800,easing:"linear",fill:"forwards"});
+    if(prev)prev.cancel();
+    prev=a;a.onfinish=()=>m?setTimeout(beat,6000):beat();
+  })();
+})();
+
+start();
+</script>
+</body>
+</html>
