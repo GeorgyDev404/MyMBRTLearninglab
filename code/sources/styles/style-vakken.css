@@ -1,9 +1,12 @@
 body{
-    background-color: bisque;
     font-family: "poppins";
-    background-image: url(https://elements-resized.envatousercontent.com/envato-dam-assets-production/4209ec14-1bea-4de5-a559-1d594c314657/cf60fef7-1684-48c4-ac06-64fcaca2167b.jpg?w=500&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=47b405b70b7eeaab5363a510fd41cd4f62eea93ec534d4d83786ed5b79b6da7c);
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(to bottom,#AEEED3,#55A9A0,#287A74);
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
 }
 h1{
     font-weight: bolder;
@@ -13,31 +16,37 @@ h1{
     width: 600px;
     margin-left: auto;
     margin-right: auto;
-
+    color:white;
     background-color: blue;
     
-}
-.vak-info1{
-    display:inline-flex;
-    width: auto;
-    padding:10px;
-       
-    background-image: url(https://images.pexels.com/photos/20536223/pexels-photo-20536223.jpeg?cs=srgb&dl=pexels-timothy-huliselan-205951426-20536223.jpg&fm=jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-blend-mode:overlay;
-
-    color:black;
-
-
-    margin-left: 20px;
-    margin-right: 20px;
-    max-width: 50%;
-
+    outline-style: outset;
+    outline-width: 4px;
+    outline-color: #10142e;
     
 }
-.vak-info2{
-    background-color:yellow;
-    display:inline-flex;
-    gap: 200px;
+.vak{
+    padding:20px;
+    width:250px;
+    border: 2px outset;
+    border-radius: 5px;
+    text-align:left;
+    margin-left:10px;
+  
+    outline:4px solid;
+    outline-color: #2E2910;
+    background-image: linear-gradient(to top right,#d6d192,#FFF8B0);
+   
+    font-size:20px;
+    font-weight:bold;
+    font-family: "poppins";
+    box-shadow: 0 30px 40px rgba(0,0,0,.1);
+}
+.container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap:wrap;
+    gap: 10px;
+    align-content:flex-start;
 }
