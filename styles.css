@@ -1,0 +1,70 @@
+.collapsible{
+    background-color: #315B8C;
+    color: #231c1c;
+    cursor:pointer;
+   
+    padding:20px;
+    width:250px;
+    border: 2px outset;
+    border-radius: 10px;
+    text-align:middle;
+    margin-left:100px;
+  
+    outline:4px solid;
+    outline-color: #315B8C;
+   
+    font-size:20px;
+    font-weight:bold;
+    font-family: "poppins";
+    box-shadow: 0 30px 40px rgba(0,0,0,.1);
+}
+.active, .collapsible:hover{
+    background-color: #315B8C;
+    border: 2px inset;
+}
+.content{
+    padding:10px;
+    display:none;
+    overflow:hidden;
+    background-color: #c8614d;
+    width: 300px;
+    
+    border:0px solid;
+    border-color: #413333;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+
+    margin-right: auto;
+    margin-left: 100px;
+    
+    transition:max-height 0.2s ease-out;
+}
+.collapsible:after{
+    content: "\002B";
+  font-size: 20px;
+  color: rgb(7, 21, 73);
+  float: right;
+  margin-left:5px;
+}
+.active:after {
+  content: "\2212";
+}
+body{
+    background-color:#F5EBDD;
+    font-family: "poppins" ;
+    Color:#413333;
+    
+}
+.vak1{
+    background-color:#F2765E;
+    float: left;
+    padding: 40px;
+    border-radius: 100px;
+    box-shadow: 0 30px 60px rgba(0,0,0,.1);
+
+}
+p{
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
