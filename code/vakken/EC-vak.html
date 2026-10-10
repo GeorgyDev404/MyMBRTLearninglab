@@ -3,10 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EC</title>
+    <title>Echo</title>
+    <link rel="icon" type="image/x-icon" href="../sources/media/favicon.ico">
     <link rel="stylesheet" href="../sources/styles/style-vakken.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>EC</h1>
+  
+<div>
+    <div>
+    <h1 class="vak-titel EC">Echo</h1>
+    </div>
+
+
+    <div class="container">
+        
+       <div class="module 1">
+         <h1>Module 1</h1>
+        <div class="onderwerpen">
+          <p class="kopje">Oefenen met de Parameters</p>
+
+            <button class="collapsible">Beeldkwaliteit beoordelen</button>
+            <div class="content">
+            <p class="linkjes"><a href="../quizzez/m1,EC,quiz,beeldkwaliteit.html">Opdracht 1 </a></p>
+            </div>
+        </div>
+
+        <div class="onderwerpen">
+          <p class="kopje">Spelling:</p>
+
+            <button class="collapsible">Bijvoegelijk naamwoorden</button>
+            <div class="content">
+            <p class="linkjes"><a href="../quizzez/.html" target="_blank">Opdracht 1</a></p>
+            </div>
+        </div>
+
+        <div class="onderwerpen">
+          <p class="kopje">Anatomie</p>
+
+            <button class="collapsible">Humerus</button>
+            <div class="content">
+            <p class="linkjes"><a href="../quizzez/.html">Opdracht 1</a></p>
+            </div>
+        </div>
+
+       
+
+        </div>
+         
+        <div class="module 2">
+          <h1>Module 2</h1>
+
+
+
+        </div>
+
+        <div class="module 2">
+          <h1>Module 3</h1>
+
+
+
+        </div>
+
+        <div class="module 2">
+          <h1>Module 4</h1>
+
+
+
+        </div>
+  
+       </div>    
+
+    </div>
+  </div>
+
+<script>
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+        content.style.display = "none";
+        } else {
+        content.style.display = "block";
+        }
+    });}
+    </script>
+
 </body>
 </html>
