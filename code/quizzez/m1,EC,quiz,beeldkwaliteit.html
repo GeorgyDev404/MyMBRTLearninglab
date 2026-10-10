@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Echo: beoordeel de instellingen</title>
+<!-- Alle quizzen gebruiken hetzelfde CSS-bestand. In dit HTML-bestand staat geen opmaak. -->
+<link rel="stylesheet" href="../sources/styles/quiz.css">
+</head>
+<body>
+<canvas id="confetti" aria-hidden="true"></canvas>
+
+<svg id="veins" viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+<g class="slagader"><path d="M820 40C700 60 640 140 600 250S520 420 430 470"/><path d="M600 250C560 240 500 250 470 210"/><path d="M640 140C690 190 700 260 760 300"/><path d="M520 400C560 450 560 520 520 580"/></g>
+<g class="ader"><path d="M-20 980C100 940 170 860 210 760S300 590 380 540"/><path d="M210 760C250 770 310 760 340 800"/><path d="M170 860C120 840 80 780 20 760"/><path d="M290 620C250 570 250 500 290 440"/></g>
+</svg>
+
+<main>
+
+<!-- ============================================================
+     1. KOP  (titel + ondertitel van de quiz)
+     ============================================================ -->
+<header><div><h1 id="quiz-titel">Echo: beoordeel de instellingen</h1><p class="sub" id="quiz-ondertitel">Kies per echobeeld: hoger, staat goed of lager</p></div>
+<svg id="ecg" viewBox="0 0 160 44" aria-hidden="true"><path pathLength="1" d="M0 36H56L61 36L66 10L72 42L79 18L84 36H160"/></svg></header>
+
+<!-- 2. Hier verschijnt de quiz zelf (wordt automatisch gevuld) -->
+<div id="app"></div>
+
+<!-- 3. Zegel -->
+<footer class="seal"><svg viewBox="0 0 100 100" role="img" aria-label="MBRT studentenquiz"><path d="M16 14H84V52Q84 78 50 90Q16 78 16 52Z" fill="var(--card)" stroke="var(--art)" stroke-width="4"/><path d="M24 52H38L43 42L49 64L55 36L60 52H76" fill="none" stroke="var(--art)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><text x="50" y="73" text-anchor="middle" font-size="13" letter-spacing=".6" fill="var(--mute)" font-family="'Source Sans 3',system-ui,sans-serif">Fontys</text></svg><span><b>MBRT studentenquiz</b><br>Gecontroleerd door een MBRT-student · oefenmateriaal</span></footer>
+
+</main>
+
+
+<!-- ============================================================
+     4. QUIZ-INHOUD  -  HIER STAAN DE VRAGEN EN ANTWOORDEN
+     ------------------------------------------------------------
+     Elke vraag heeft dezelfde opbouw:
+
+       <article class="vraag" data-opties="hoger-lager" data-label="Beeld 1 · Diepte">
+         <img class="foto" src="sources/media/echo-beeld-1.png" alt="Echobeeld 1">
+         <h3 class="term">DE VRAAG</h3>
+         <p class="juist">HET JUISTE ANTWOORD</p>
+         <p class="toelichting">UITLEG DIE NA HET ANTWOORD WORDT GETOOND</p>
+       </article>
+
+     - h3.term        = de vraag (wat de student ziet)
+     - p.juist        = het juiste antwoord (moet exact gelijk zijn aan een optie)
+     - img.foto       = optioneel: foto bij de vraag
+     - p.toelichting  = optioneel: uitleg na het antwoord
+     - p.hint         = optioneel: eigen hint voor deze ene vraag
+     - data-label     = optioneel: korte naam, ook gebruikt in het eindoverzicht
+     - data-opties    = naam van een vaste lijst met opties (zie hieronder).
+                        Zonder data-opties trekt de quiz 3 foute opties uit de
+                        juiste antwoorden van de andere vragen (data-groep="x").
+     ============================================================ -->
+<section id="quiz-inhoud">
+
+  <!-- Uitleg op het startscherm -->
+  <div id="uitleg">Je ziet een echobeeld en beoordeelt steeds één instelling: hoger, staat goed of lager. Bij transducer en bodymarker kies je of de instelling goed is. Na elk antwoord zie je de uitleg uit het referentiemateriaal.</div>
+
+  <!-- Hint onder elke vraag (leeg = geen hint) -->
+  <p id="standaard-hint"></p>
+
+  <!-- Vaste antwoordopties (de volgorde is de volgorde op het scherm) -->
+  <ul id="opties-hoger-lager"><li>Hoger</li><li>Staat goed</li><li>Lager</li></ul>
+  <ul id="opties-goed-niet"><li>Goed</li><li>Niet goed</li></ul>
+
+  <!-- ============ BEELD 1 ============ -->
+  <!-- Vraag 1: beeld 1, Transducer -->
+  <article class="vraag" data-opties="goed-niet" data-label="Beeld 1 · Transducer">
+    <img class="foto" src="../sources/media/echo-beeld-1.png" alt="Echobeeld 1">
+    <h3 class="term">Is de transducer goed?</h3>
+    <p class="juist">Goed</p>
+    <p class="toelichting">Goed, de convex transducer met lage frequentie</p>
+  </article>
+
+  <!-- Vraag 2: beeld 1, Diepte -->
+  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 1 · Diepte">
+    <img class="foto" src="../sources/media/echo-beeld-1.png" alt="Echobeeld 1">
+    <h3 class="term">Moet de ingestelde diepte hoger of lager?</h3>
+    <p class="juist">Lager</p>
+    <p class="toelichting">Beetje te diep. Door oppervlakkiger te kiezen zal je framerate en details beter worden</p>
+  </article>
+
+  <!-- Vraag 3: beeld 1, Focus -->
+  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 1 · Focus">
+    <img class="foto" src="../sources/media/echo-beeld-1.png" alt="Echobeeld 1">
+    <h3 class="term">Moet de focus hoger of lager in het beeld staan?</h3>
+    <p class="juist">Staat goed</p>
+    <p class="toelichting">Goed</p>
+  </article>
+
+  <!-- Vraag 4: beeld 1, Gain -->
+  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 1 · Gain">
+    <img class="foto" src="../sources/media/echo-beeld-1.png" alt="Echobeeld 1">
+    <h3 class="term">Moet de gain hoger of lager?</h3>
+    <p class="juist">Lager</p>
+    <p class="toelichting">Teveel, terug draaien zodat bloed anechogeen wordt</p>
+  </article>
+
+  <!-- Vraag 5: beeld 1, TGC -->
+  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 1 · TGC">
+    <img class="foto" src="../sources/media/echo-beeld-1.png" alt="Echobeeld 1">
+    <h3 class="term">Moet de TGC hoger of lager?</h3>
+    <p class="juist">Staat goed</p>
+    <p class="toelichting">Voldoende</p>
+  </article>
+
+  <!-- Vraag 6: beeld 1, Bodymarker -->
+  <article class="vraag" data-opties="goed-niet" data-label="Beeld 1 · Bodymarker">
+    <img class="foto" src="../sources/media/echo-beeld-1.png" alt="Echobeeld 1">
+    <h3 class="term">Is de bodymarker goed?</h3>
+    <p class="juist">Niet goed</p>
+    <p class="toelichting">Verkeerd, dit is longitudinaal en niet transversaal</p>
+  </article>
+
+
+  <!-- ============ BEELD 2 ============ -->
+  <!-- Vraag 7: beeld 2, Transducer -->
+  <article class="vraag" data-opties="goed-niet" data-label="Beeld 2 · Transducer">
+    <img class="foto" src="../sources/media/echo-beeld-2.png" alt="Echobeeld 2">
+    <h3 class="term">Is de transducer goed?</h3>
+    <p class="juist">Goed</p>
+    <p class="toelichting">Goed, de convex transducer met lage frequentie</p>
+  </article>
+
+  <!-- Vraag 8: beeld 2, Diepte -->
+  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 2 · Diepte">
+    <img class="foto" src="../sources/media/echo-beeld-2.png" alt="Echobeeld 2">
+    <h3 class="term">Moet de ingestelde diepte hoger of lager?</h3>
+    <p class="juist">Staat goed</p>
+    <p class="toelichting">Goed</p>
+  </article>
+
+  <!-- Vraag 9: beeld 2, Focus -->
+  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 2 · Focus">
+    <img class="foto" src="../sources/media/echo-beeld-2.png" alt="Echobeeld 2">
+    <h3 class="term">Moet de focus hoger of lager in het beeld staan?</h3>
+    <p class="juist">Staat goed</p>
+    <p class="toelichting">Goed</p>
+  </article>
+
+  <!-- Vraag 10: beeld 2, Gain -->
+  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 2 · Gain">
+    <img class="foto" src="../sources/media/echo-beeld-2.png" alt="Echobeeld 2">
+    <h3 class="term">Moet de gain hoger of lager?</h3>
+    <p class="juist">Staat goed</p>
+    <p class="toelichting">Goed</p>
+  </article>
+
+  <!-- Vraag 11: beeld 2, TGC -->
+  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 2 · TGC">
+    <img class="foto" src="../sources/media/echo-beeld-2.png" alt="Echobeeld 2">
+    <h3 class="term">Moet de TGC van de diepere structuren hoger of lager?</h3>
+    <p class="juist">Hoger</p>
+    <p class="toelichting">Aan de oppervlakte goed, de dieper gelegen structuren moeten meer versterkt worden</p>
+  </article>
+
+  <!-- Vraag 12: beeld 2, Bodymarker -->
+  <article class="vraag" data-opties="goed-niet" data-label="Beeld 2 · Bodymarker">
+    <img class="foto" src="../sources/media/echo-beeld-2.png" alt="Echobeeld 2">
+    <h3 class="term">Is de bodymarker goed?</h3>
+    <p class="juist">Niet goed</p>
+    <p class="toelichting">Matig, Hij staat nu wel heel erg naar lateraal, terwijl hij in het mediaanvlak moet staan</p>
+  </article>
+
+
+  <!-- ============ BEELD 3 ============ -->
+  <!-- Vraag 13: beeld 3, Transducer -->
+  <article class="vraag" data-opties="goed-niet" data-label="Beeld 3 · Transducer">
+    <img class="foto" src="../sources/media/echo-beeld-3.png" alt="Echobeeld 3">
+    <h3 class="term">Is de transducer goed?</h3>
+    <p class="juist">Goed</p>
+    <p class="toelichting">Goed, de convex transducer met lage frequentie</p>
+  </article>
+
+  <!-- Vraag 14: beeld 3, Diepte -->
+  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 3 · Diepte">
+    <img class="foto" src="../sources/media/echo-beeld-3.png" alt="Echobeeld 3">
+    <h3 class="term">Moet de ingestelde diepte hoger of lager?</h3>
+    <p class="juist">Lager</p>
+    <p class="toelichting">Te diep, Door oppervlakkiger te kiezen zal je framerate en details beter worden</p>
+  </article>
+
+  <!-- Vraag 15: beeld 3, Focus -->
+  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 3 · Focus">
+    <img class="foto" src="../sources/media/echo-beeld-3.png" alt="Echobeeld 3">
+    <h3 class="term">Moet de focus hoger of lager in het beeld staan?</h3>
+    <p class="juist">Staat goed</p>
+    <p class="toelichting">Goed</p>
+  </article>
+
+  <!-- Vraag 16: beeld 3, Gain -->
+  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 3 · Gain">
+    <img class="foto" src="../sources/media/echo-beeld-3.png" alt="Echobeeld 3">
+    <h3 class="term">Moet de gain hoger of lager?</h3>
+    <p class="juist">Staat goed</p>
+    <p class="toelichting">Goed</p>
+  </article>
+
+  <!-- Vraag 17: beeld 3, TGC -->
+  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 3 · TGC">
+    <img class="foto" src="../sources/media/echo-beeld-3.png" alt="Echobeeld 3">
+    <h3 class="term">Moet de TGC hoger of lager?</h3>
+    <p class="juist">Staat goed</p>
+    <p class="toelichting">Voldoende</p>
+  </article>
+
+  <!-- Vraag 18: beeld 3, Bodymarker -->
+  <article class="vraag" data-opties="goed-niet" data-label="Beeld 3 · Bodymarker">
+    <img class="foto" src="../sources/media/echo-beeld-3.png" alt="Echobeeld 3">
+    <h3 class="term">Is de bodymarker goed?</h3>
+    <p class="juist">Goed</p>
+    <p class="toelichting">Goed</p>
+  </article>
+
+
+  <!-- ============ BEELD 4 ============ -->
+  <!-- Vraag 19: beeld 4, Transducer -->
+  <article class="vraag" data-opties="goed-niet" data-label="Beeld 4 · Transducer">
+    <img class="foto" src="../sources/media/echo-beeld-4.png" alt="Echobeeld 4">
+    <h3 class="term">Is de transducer goed?</h3>
+    <p class="juist">Goed</p>
+    <p class="toelichting">Goed, de convex transducer met lage frequentie</p>
+  </article>
+
+  <!-- Vraag 20: beeld 4, Diepte -->
+  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 4 · Diepte">
+    <img class="foto" src="../sources/media/echo-beeld-4.png" alt="Echobeeld 4">
+    <h3 class="term">Moet de ingestelde diepte hoger of lager?</h3>
+    <p class="juist">Lager</p>
+    <p class="toelichting">Te diep, Door oppervlakkiger te kiezen zal je framerate en details beter worden</p>
+  </article>
+
+  <!-- Vraag 21: beeld 4, Focus -->
+  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 4 · Focus">
+    <img class="foto" src="../sources/media/echo-beeld-4.png" alt="Echobeeld 4">
+    <h3 class="term">Moet de focus hoger of lager in het beeld staan?</h3>
+    <p class="juist">Staat goed</p>
+    <p class="toelichting">Goed</p>
+  </article>
+
+  <!-- Vraag 22: beeld 4, Gain -->
+  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 4 · Gain">
+    <img class="foto" src="../sources/media/echo-beeld-4.png" alt="Echobeeld 4">
+    <h3 class="term">Moet de gain hoger of lager?</h3>
+    <p class="juist">Staat goed</p>
+    <p class="toelichting">Goed</p>
+  </article>
+
+  <!-- Vraag 23: beeld 4, TGC -->
+  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 4 · TGC">
+    <img class="foto" src="../sources/media/echo-beeld-4.png" alt="Echobeeld 4">
+    <h3 class="term">Moet de TGC hoger of lager?</h3>
+    <p class="juist">Staat goed</p>
+    <p class="toelichting">Voldoende, verwachting is dat als je de diepte verbetert ook de TGC te vlak staat. Bij een kleine diepte is er weinig verschil</p>
+  </article>
+
+  <!-- Vraag 24: beeld 4, Bodymarker -->
+  <article class="vraag" data-opties="goed-niet" data-label="Beeld 4 · Bodymarker">
+    <img class="foto" src="../sources/media/echo-beeld-4.png" alt="Echobeeld 4">
+    <h3 class="term">Is de bodymarker goed?</h3>
+    <p class="juist">Goed</p>
+    <p class="toelichting">Transversaal beeld van de bifurcatie, dus thv de nave</p>
+  </article>
+
+
+  <!-- ============ BEELD 5 ============ -->
+  <!-- Vraag 25: beeld 5, Transducer -->
+  <article class="vraag" data-opties="goed-niet" data-label="Beeld 5 · Transducer">
+    <img class="foto" src="../sources/media/echo-beeld-5.png" alt="Echobeeld 5">
+    <h3 class="term">Is de transducer goed?</h3>
+    <p class="juist">Goed</p>
+    <p class="toelichting">Goed, de convex transducer met lage frequentie</p>
+  </article>
+
+  <!-- Vraag 26: beeld 5, Diepte -->
+  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 5 · Diepte">
+    <img class="foto" src="../sources/media/echo-beeld-5.png" alt="Echobeeld 5">
+    <h3 class="term">Moet de ingestelde diepte hoger of lager?</h3>
+    <p class="juist">Staat goed</p>
+    <p class="toelichting">Goed</p>
+  </article>
+
+  <!-- Vraag 27: beeld 5, Focus -->
+  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 5 · Focus">
+    <img class="foto" src="../sources/media/echo-beeld-5.png" alt="Echobeeld 5">
+    <h3 class="term">Moet de focus hoger of lager in het beeld staan?</h3>
+    <p class="juist">Lager</p>
+    <p class="toelichting">Te hoog, Door deze op de juiste hoogte te zetten zal je laterale resolutie verbeteren</p>
+  </article>
+
+  <!-- Vraag 28: beeld 5, Gain -->
+  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 5 · Gain">
+    <img class="foto" src="../sources/media/echo-beeld-5.png" alt="Echobeeld 5">
+    <h3 class="term">Moet de gain hoger of lager?</h3>
+    <p class="juist">Staat goed</p>
+    <p class="toelichting">Goed</p>
+  </article>
+
+  <!-- Vraag 29: beeld 5, TGC -->
+  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 5 · TGC">
+    <img class="foto" src="../sources/media/echo-beeld-5.png" alt="Echobeeld 5">
+    <h3 class="term">Moet de TGC van de diepere structuren hoger of lager?</h3>
+    <p class="juist">Hoger</p>
+    <p class="toelichting">Matig, door de dieper gelegen gebieden meer te versterken zal er een homogener beeld ontstaan</p>
+  </article>
+
+  <!-- Vraag 30: beeld 5, Bodymarker -->
+  <article class="vraag" data-opties="goed-niet" data-label="Beeld 5 · Bodymarker">
+    <img class="foto" src="../sources/media/echo-beeld-5.png" alt="Echobeeld 5">
+    <h3 class="term">Is de bodymarker goed?</h3>
+    <p class="juist">Goed</p>
+    <p class="toelichting">Goed</p>
+  </article>
+
+
+  <!-- ============ BEELD 6 ============ -->
+  <!-- Vraag 31: beeld 6, Transducer -->
+  <article class="vraag" data-opties="goed-niet" data-label="Beeld 6 · Transducer">
+    <img class="foto" src="../sources/media/echo-beeld-6.png" alt="Echobeeld 6">
+    <h3 class="term">Is de transducer goed?</h3>
+    <p class="juist">Niet goed</p>
+    <p class="toelichting">Goed, de convex transducer met lage frequentie. De transducer staat verkeerd om, waardoor de beeldorientatie niet is zoals afgesproken</p>
+  </article>
+
+  <!-- Vraag 32: beeld 6, Diepte -->
+  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 6 · Diepte">
+    <img class="foto" src="../sources/media/echo-beeld-6.png" alt="Echobeeld 6">
+    <h3 class="term">Moet de ingestelde diepte hoger of lager?</h3>
+    <p class="juist">Staat goed</p>
+    <p class="toelichting">Goed</p>
+  </article>
+
+  <!-- Vraag 33: beeld 6, Focus -->
+  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 6 · Focus">
+    <img class="foto" src="../sources/media/echo-beeld-6.png" alt="Echobeeld 6">
+    <h3 class="term">Moet de focus hoger of lager in het beeld staan?</h3>
+    <p class="juist">Staat goed</p>
+    <p class="toelichting">Goed</p>
+  </article>
+
+  <!-- Vraag 34: beeld 6, Gain -->
+  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 6 · Gain">
+    <img class="foto" src="../sources/media/echo-beeld-6.png" alt="Echobeeld 6">
+    <h3 class="term">Moet de gain hoger of lager?</h3>
+    <p class="juist">Staat goed</p>
+    <p class="toelichting">Goed</p>
+  </article>
+
+  <!-- Vraag 35: beeld 6, TGC -->
+  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 6 · TGC">
+    <img class="foto" src="../sources/media/echo-beeld-6.png" alt="Echobeeld 6">
+    <h3 class="term">Moet de TGC hoger of lager?</h3>
+    <p class="juist">Staat goed</p>
+    <p class="toelichting">Voldoende</p>
+  </article>
+
+  <!-- Vraag 36: beeld 6, Bodymarker -->
+  <article class="vraag" data-opties="goed-niet" data-label="Beeld 6 · Bodymarker">
+    <img class="foto" src="../sources/media/echo-beeld-6.png" alt="Echobeeld 6">
+    <h3 class="term">Is de bodymarker goed?</h3>
+    <p class="juist">Goed</p>
+    <p class="toelichting">Goed</p>
+  </article>
+
+</section>
+
+
+<!-- ============================================================
+     5. SPELMECHANIEK  -  hier hoef je niets te veranderen
+     ============================================================ -->
+<script>
+// Leest de vragen uit de HTML hierboven (#quiz-inhoud)
+const inhoud=document.getElementById("quiz-inhoud");
+const uitleg=document.getElementById("uitleg").innerHTML;
+const standaardHint=document.getElementById("standaard-hint").textContent.trim();
+// Vaste antwoordopties (lijsten met id "opties-...")
+const sets={};
+inhoud.querySelectorAll("ul[id^='opties-']").forEach(ul=>{sets[ul.id.replace("opties-","")]=[...ul.querySelectorAll("li")].map(li=>li.textContent.trim())});
+const D=[...inhoud.querySelectorAll(".vraag")].map(v=>{
+  const img=v.querySelector(".foto"),tl=v.querySelector(".toelichting");
+  return{
+    q:v.querySelector(".term").textContent.trim(),
+    h:(v.querySelector(".hint")||{textContent:standaardHint}).textContent.trim(),
+    a:v.querySelector(".juist").textContent.trim(),
+    g:v.dataset.groep||"x",
+    set:v.dataset.opties||"",
+    label:v.dataset.label||"",
+    foto:img?img.getAttribute("src"):"",
+    alt:img?img.getAttribute("alt")||"":"",
+    t:tl?tl.textContent.trim():""
+  }});
+// Groepen voor vragen zonder vaste opties
+const G={x:D.map(d=>d.a)};
+D.forEach(d=>{if(d.g!=="x")(G[d.g]=G[d.g]||[]).push(d.a)});
+
+const app=document.getElementById("app");
+let deck,pos,score,done,total,missed,tried,locked,cur;
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+
+function start(){
+  if(!D.length){app.innerHTML=`<div class="card"><p>Er zijn nog geen vragen toegevoegd.</p></div>`;return}
+  app.innerHTML=`<div class="card"><p>${uitleg}</p><p class="mute">${D.length} vragen. Toetsenbord: de cijfertoetsen om te kiezen, Enter voor de volgende vraag. Fout beantwoorde vragen komen terug tot je ze goed hebt.</p><div class="row"><button class="btn" id="go">Start de quiz</button></div></div>`;
+  document.getElementById("go").onclick=run;
+}
+function run(){deck=shuffle(D);pos=0;score=0;done=0;total=D.length;missed=[];tried=new Set();show()}
+
+function show(){
+  const it=deck[pos];locked=false;cur={it,opts:it.set?(sets[it.set]||[]).map(t=>({t,ok:t===it.a})):shuffle([{t:it.a,ok:true},...shuffle([...new Set(G[it.g])].filter(x=>x!==it.a)).slice(0,3).map(t=>({t,ok:false}))])};
+  app.innerHTML=`<div class="card"><div class="bar"><i style="width:${Math.round(done/total*100)}%"></i></div>
+  <div class="meta"><span>Goed beantwoord: ${done} van ${total}${tried.has(it)?" · herhaling":""}</span><span>Nog te gaan: ${deck.length-pos}</span></div>
+  ${it.foto?`<img class="foto" src="${it.foto}" alt="${it.alt}">`:""}${it.label?`<p class="mute">${it.label}</p>`:""}<div class="q">${it.q}</div>${it.h?`<p class="hint">${it.h}</p>`:""}
+  <div class="opts">${cur.opts.map((o,i)=>`<button class="opt" data-i="${i}"><b>${i+1}</b><span>${o.t}</span></button>`).join("")}</div>
+  <p class="fb" id="fb" aria-live="polite"></p><p class="toelichting" id="toel"></p><div class="row" id="nx"></div></div>`;
+  app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>pick(+b.dataset.i));
+}
+
+function pick(i){
+  if(locked)return;locked=true;
+  const it=cur.it,right=cur.opts[i].ok,good=it.a,first=!tried.has(it);
+  tried.add(it);
+  if(right){done++;if(first)score++}
+  else{
+    if(first)missed.push({q:(it.label||it.q)+(it.h.startsWith("Kies de")?" ("+it.h.split(".")[0].replace("Kies de ","")+")":""),a:good});
+    deck.splice(Math.min(deck.length,pos+3+Math.floor(Math.random()*3)),0,it);
+  }
+  app.querySelectorAll(".opt").forEach((b,j)=>{b.disabled=true;if(cur.opts[j].ok)b.classList.add("ok");else if(j===i)b.classList.add("bad")});
+  const fb=document.getElementById("fb");
+  fb.className="fb "+(right?"ok":"bad");
+  const o=D.find(d=>d.a===cur.opts[i].t);
+  fb.textContent=right?"Goed!":"Niet juist. Het antwoord is: "+good+"."+(it.set||!o?"":" "+cur.opts[i].t+" hoort bij: "+o.q.toLowerCase()+".")+" Deze vraag komt straks terug.";
+  document.getElementById("toel").textContent=it.t?"Uitleg: "+it.t:"";
+  const last=pos===deck.length-1&&right;
+  document.getElementById("nx").innerHTML=`<button class="btn" id="next">${last?"Bekijk resultaat":"Volgende vraag"}</button>`;
+  const n=document.getElementById("next");n.focus();n.onclick=()=>{pos++;pos<deck.length?show():end()};
+}
+
+function end(){
+  app.innerHTML=`<div class="card"><div class="bar"><i style="width:100%"></i></div>
+  <p class="mute">Resultaat · cijfer ${gradeStr()}</p><div class="score">${score} / ${total}</div><p>${Math.round(score/total*100)}% in één keer goed. Alle vragen heb je uiteindelijk goed beantwoord.</p>
+  ${missed.length?`<p class="mute">Eerste keer fout:</p><ul class="miss">${missed.map(m=>`<li><span>${m.q}</span><span>${m.a}</span></li>`).join("")}</ul>`:`<p>Alles in één keer goed. Sterk gedaan.</p>`}
+  <div class="row"><button class="btn" id="ra">Opnieuw</button><button class="btn alt" id="rs">Bekijk je cijfer</button></div></div>`;
+  document.getElementById("ra").onclick=run;
+  document.getElementById("rs").onclick=showResult;
+  showResult();confetti(score===total?240:130);
+}
+
+const gradeStr=()=>(1+9*score/total).toFixed(1).replace(".",",");
+const medalSVG=on=>on?`<svg class="medal" viewBox="0 0 120 150" role="img" aria-label="Medaille"><defs><linearGradient id="gd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbe38a"/><stop offset="1" stop-color="#d49a1a"/></linearGradient></defs><path d="M30 0h22l14 52H44z" fill="#2a5f9e"/><path d="M90 0H68L54 52h22z" fill="#b0243a"/><circle cx="60" cy="94" r="44" fill="url(#gd)" stroke="#a87b1a" stroke-width="3"/><circle cx="60" cy="94" r="35" fill="none" stroke="#fff6cf" stroke-width="2" opacity=".8"/><text x="60" y="95" text-anchor="middle" dominant-baseline="central" font-family="'Cormorant Garamond',Georgia,serif" font-weight="700" font-size="23" textLength="56" lengthAdjust="spacingAndGlyphs" fill="#8a1f33">MBRT</text></svg>`
+:`<svg class="medal" viewBox="0 0 120 150" role="img" aria-label="Medaille nog te verdienen"><path class="off" d="M30 0h22l14 52H44zM90 0H68L54 52h22z"/><circle class="off" cx="60" cy="94" r="44"/><text x="60" y="95" text-anchor="middle" dominant-baseline="central" font-family="'Cormorant Garamond',Georgia,serif" font-weight="700" font-size="23" textLength="56" lengthAdjust="spacingAndGlyphs" fill="var(--line)">MBRT</text></svg>`;
+
+function closePop(){const e=document.getElementById("pop");if(e)e.remove();const b=document.getElementById("rs");if(b)b.focus()}
+function showResult(){
+  closePop();
+  const win=score===total,el=document.createElement("div");
+  el.id="pop";el.className="pop";
+  el.innerHTML=`<div class="dlg" role="dialog" aria-modal="true" aria-labelledby="pt"><button class="x" id="px" aria-label="Sluiten">×</button>${medalSVG(win)}
+  <h2 id="pt">${win?"Medaille behaald!":"Nog geen medaille"}</h2>
+  <div class="grade">${gradeStr()}</div><p>${score} van ${total} vragen in één keer goed</p>
+  <p>${win?"Alle vragen in één keer goed. Je hebt de medaille verdiend.":"Oefen nog een keer en beantwoord alles in één keer goed om een medaille te verdienen."}</p>
+  <div class="row"><button class="btn" id="pa">Opnieuw oefenen</button><button class="btn alt" id="pc">Sluiten</button></div>
+  <small>Cijfer = 1 + 9 × score ÷ totaal</small></div>`;
+  document.body.appendChild(el);
+  el.onclick=e=>{if(e.target===el)closePop()};
+  document.getElementById("px").onclick=closePop;
+  document.getElementById("pc").onclick=closePop;
+  document.getElementById("pa").onclick=()=>{closePop();run()};
+  document.getElementById("pc").focus();
+}
+
+function confetti(n){
+  if(matchMedia("(prefers-reduced-motion:reduce)").matches)return;
+  const c=document.getElementById("confetti"),x=c.getContext("2d"),d=devicePixelRatio||1,W=innerWidth,H=innerHeight;
+  c.width=W*d;c.height=H*d;x.scale(d,d);
+  const cols=["#ef5a70","#6aa6ec","#f2c14e","#6fd49c","#e9eef4"];
+  const ps=Array.from({length:n},()=>({x:Math.random()*W,y:-20-Math.random()*H*.7,w:6+Math.random()*6,h:9+Math.random()*8,vy:2+Math.random()*3,vx:(Math.random()-.5)*1.4,r:Math.random()*6.28,vr:(Math.random()-.5)*.25,s:Math.random()*6.28,c:cols[Math.floor(Math.random()*cols.length)]}));
+  (function f(){
+    x.clearRect(0,0,W,H);let alive=0;
+    ps.forEach(p=>{p.y+=p.vy;p.s+=.05;p.x+=p.vx+Math.sin(p.s);p.r+=p.vr;
+      if(p.y<H+30){alive++;x.save();x.translate(p.x,p.y);x.rotate(p.r);x.fillStyle=p.c;x.fillRect(-p.w/2,-p.h/2,p.w,p.h);x.restore()}});
+    if(alive)requestAnimationFrame(f);else x.clearRect(0,0,W,H);
+  })();
+}
+
+document.addEventListener("keydown",e=>{
+  if(e.metaKey||e.ctrlKey||e.altKey)return;
+  if(document.getElementById("pop")){if(e.key==="Escape")closePop();return}
+  if(!locked&&cur&&document.querySelector(".opt")){{const k=+e.key;if(k>=1&&k<=cur.opts.length)pick(k-1)}}
+  else if(locked&&e.key==="Enter"&&document.activeElement.id!=="next"){const n=document.getElementById("next");if(n)n.click()}
+});
+
+// Hartslag: elke zesde slag tekent de lijn de letters MBRT
+(function(){
+  const el=document.querySelector("#ecg path");
+  const N="M0 36H56L61 36L66 10L72 42L79 18L84 36H160";
+  const L="M0 36H17Q20 36 20 33V14Q20 7 26 12L29 17Q30 19 31 17L34 12Q38 7 38 14V33Q38 36 41 36H42Q44 36 44 34V10Q44 8 46 8H52C58 8 58 22 52 22H44H53C60 22 60 36 53 36H44H64Q66 36 66 34V10Q66 8 68 8H74C80 8 80 22 74 22H66H71Q76 24 82 36H94Q97 36 97 33V8H91Q88 8 88 11Q88 8 91 8H103Q106 8 106 11Q106 8 103 8H97V33Q97 36 100 36H160";
+  if(matchMedia("(prefers-reduced-motion:reduce)").matches||!el.animate){el.setAttribute("d",N);return}
+  let n=0,prev;
+  (function beat(){
+    const m=++n%6===0;
+    el.setAttribute("d",m?L:N);
+    el.style.strokeDasharray=m?"1 1.01":".45 1.01";
+    const k=m?[{strokeDashoffset:1,opacity:1,offset:0},{strokeDashoffset:0,opacity:1,offset:.45},{strokeDashoffset:0,opacity:1,offset:.8},{strokeDashoffset:0,opacity:0,offset:1}]
+             :[{strokeDashoffset:.45,opacity:1},{strokeDashoffset:-1.01,opacity:1}];
+    const a=el.animate(k,{duration:m?10000:1800,easing:"linear",fill:"forwards"});
+    if(prev)prev.cancel();
+    prev=a;a.onfinish=()=>m?setTimeout(beat,6000):beat();
+  })();
+})();
+
+start();
+</script>
+
+</body>
+</html>
