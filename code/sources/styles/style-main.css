@@ -1,43 +1,25 @@
 .collapsible{
-    background-color: #315B8C;
-    color: #231c1c;
+    background-color: #d6d192;
     cursor:pointer;
-   
-    padding:20px;
-    width:250px;
-    border: 2px outset;
-    border-radius: 10px;
-    text-align:middle;
-    margin-left:100px;
-  
-    outline:4px solid;
-    outline-color: #315B8C;
-   
-    font-size:20px;
-    font-weight:bold;
-    font-family: "poppins";
-    box-shadow: 0 30px 40px rgba(0,0,0,.1);
+
+    padding:10px;
+    width:477px;
+    border:2px outset;
+    text-align:center;
+    font-size: smaller;
 }
 .active, .collapsible:hover{
-    background-color: #315B8C;
-    border: 2px inset;
+    background-color: #3242;
+    border:2px inset;
 }
 .content{
-    padding:10px;
+    background-color:#ddd787;    
+    padding:0px;
     display:none;
-    overflow:hidden;
-    background-color: #c8614d;
-    width: 300px;
+    width: auto;
     
-    border:0px solid;
-    border-color: #413333;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-
-    margin-right: auto;
-    margin-left: 100px;
-    
+    border:2px outset;
+    border-color: #0b1941;    
     transition:max-height 0.2s ease-out;
 }
 .collapsible:after{
@@ -51,20 +33,27 @@
   content: "\2212";
 }
 body{
-    background-color:#F5EBDD;
-    font-family: "poppins" ;
-    Color:#413333;
-    
+    font-family: "poppins";
+    height: 100%;
+    background-image: linear-gradient(to right,rgb(21, 103, 137),rgb(9, 44, 66));
 }
 .vak1{
-    background-color:#F2765E;
-    float: left;
-    padding: 40px;
-    border-radius: 100px;
+    background-image:linear-gradient(to left bottom,#ddd787,#a5a163 );
+    float: centre;
+    padding: 30px;
+    border-radius: 10px;
     box-shadow: 0 30px 60px rgba(0,0,0,.1);
-
+    width:500px;    
+    text-align: left;
+    display:flex;
+    flex-direction: column;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
 }
 p{
-    margin-top: 1px;
+    margin-top: -5px;
     margin-bottom: 1px;
+    margin-left:10px;
 }
