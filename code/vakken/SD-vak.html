@@ -5,93 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StralingDeskundigheid</title>
     <link rel="icon" type="image/x-icon" href="../sources/media/favicon.ico">
+<<<<<<< HEAD
+    <link rel="stylesheet" href="../sources/styles/style-vakken2.css">
+=======
     <link rel="stylesheet" href="../sources/styles/style-vakken.css">
+>>>>>>> 074fb3f48b13bc39a52f03648b226bb462aaed1c
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
   
 <div>
-    <div>
-    <h1 class="vak-titel SD">Conventionele radiologie</h1> 
-    </div>
+  <div>
+   <a class="logo"><img src="../sources/media/logo.png" height="80"></a> 
+    <nav class="navbar">
+        <ul> 
+            <li><a href="../../index.html">Home</a></li>
+            <li class="selected"><a href="SD-vak.html">SD</a></li>
+            <li><a href="MV-vak.html">MV</a></li>
+            <li><a href="CT-vak.html">CT</a></li>
+            <li><a href="EC-vak.html">EC</a></li>
+            <li><a href="CR-vak.html">CR</a></li>
+            <p class="titel">StralingDeskundigheid</p> 
+        </ul>
+    </nav>  
 
-
-    <div class="container">
-        
-       <div class="module 1">
+  </div> 
+    <div class="menucontent">
          <h1>Module 1</h1>
-        <div class="onderwerpen">
-          <p class="kopje">Rekenen:</p>
 
-            <button class="collapsible">Rekenen met Logaritmes</button>
-            <div class="content">
-            <p class="linkjes"><a href="../quizzez/.html">Opdracht 1</a></p>
-            </div>
+         <div class="onderwerp">
+            <h3>ONDERWERP</h3>
+              <div class="opdrachten">
+                <li><a href="../">OPDRACHT</a></li>
+              </div> 
+            </div>  
+              
         </div>
-
-        <div class="onderwerpen">
-          <p class="kopje">Spelling:</p>
-
-            <button class="collapsible">Bijvoegelijk naamwoorden</button>
-            <div class="content">
-            <p class="linkjes"><a href="../quizzez/.html" target="_blank">Opdracht 1</a></p>
-            </div>
-        </div>
-
-        <div class="onderwerpen">
-          <p class="kopje">Anatomie</p>
-
-            <button class="collapsible">Humerus</button>
-            <div class="content">
-            <p class="linkjes"><a href="../quizzez/.html">Opdracht 1</a></p>
-            </div>
-        </div>
-
-       
-
-        </div>
-         
-        <div class="module 2">
-          <h1>Module 2</h1>
-
-
-
-        </div>
-
-        <div class="module 2">
-          <h1>Module 3</h1>
-
-
-
-        </div>
-
-        <div class="module 2">
-          <h1>Module 4</h1>
-
-
-
-        </div>
-  
        </div>    
 
     </div>
   </div>
-
-<script>
-        var coll = document.getElementsByClassName("collapsible");
-        var i;
-
-        for (i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        var content = this.nextElementSibling;
-        if (content.style.display === "block") {
-        content.style.display = "none";
-        } else {
-        content.style.display = "block";
-        }
-    });}
-    </script>
-
 </body>
 </html>
