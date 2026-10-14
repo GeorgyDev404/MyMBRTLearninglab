@@ -1,0 +1,118 @@
+body{
+    background-image: url("../media/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: "Poppins";
+}
+.logo{
+    display: block;
+    float:left;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.navbar ul{
+    list-style-type:none;
+    padding:0px;
+    margin:0px;
+    margin-top:5px;
+    overflow:hidden;
+    font-size: large;
+}   
+.navbar a{
+    color:white;
+    background-color: rgba(18, 58, 82, 0.873);
+    text-decoration: none;
+    padding: 10px;
+    display:block;
+    text-align: center;
+    transition: padding .1s;
+    transition-timing-function: cubic-bezier(0, 0, 1, 1);
+}
+.navbar a:hover{
+    background-color:rgba(25, 74, 105, 0.873);
+    box-shadow: 10 30px 40px rgba(0, 0, 0, 0.654);
+    padding: 15px;
+
+ }
+ .navbar li{
+    float:left;
+    border:outset;
+    border-width: 3px;
+    border-color: rgba(7, 44, 70, 0.873);
+    margin-left: 4px;
+    margin-top: 15px;
+}
+.selected{
+    text-decoration-line: underline;
+    text-decoration-color:white;
+}
+
+.titel{
+   float:right;
+   border:outset;
+   border-width: 3px;
+   border-color: rgba(3, 17, 26, 0.873);
+   background-color: rgba(18, 58, 82, 0.873);
+   color:rgb(198, 255, 255);
+   
+   padding:10px;
+   margin-left: 4px;
+   margin-top: 15px;
+   text-align: center;
+}
+
+
+.menucontent{  
+    background-color:#397b9e;
+    color:black;
+    margin-top: 30px;
+    text-decoration-line: none;
+}
+.menucontent h1{
+    font-family:"poppins" ;
+    font-size: 1000;
+    font-weight: 600;   
+    background-color: rgba(45, 88, 114, 0.873);
+    padding-left:15px;
+}
+.onderwerp{
+    padding-left:25px;
+    background-color:rgba(47, 96, 126, 0.873) ;
+}
+.onderwerp h3{
+    text-decoration-line:underline; 
+}
+.opdrachten{
+    margin-top: -20px;
+    margin-left: 40px;
+}
+.opdrachten a{    
+    color:black;
+    text-decoration: none;
+}
+.opdrachten a:hover{
+    color: rgb(0, 176, 159);
+}
+
+
+
+.menucontent p{
+    text-align: left;
+    background-color: none;
+    padding-left:20px;
+}
+.menucontent ul{
+    max-width: 600px;
+    display:flex;
+    margin-left: 10px;
+    box-shadow:0px 0px 20px rgba(1, 31, 105, 0.561);
+}
+.menucontent li{
+    text-decoration-line: underline;
+    color:rgb(14, 61, 109)
+}
+.endofpage{
+    background-color: rgb(39, 73, 194);
+    float:bottom;
+    margin-top:700px;
+}
