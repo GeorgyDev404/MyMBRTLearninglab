@@ -6,27 +6,42 @@
     <title>Home</title>
     <link rel="icon" type="image/x-icon" href="code/sources/media/favicon.ico">
     <link rel="stylesheet" href="code/sources/styles/style-main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bitcount+Ink:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
+<div>
+   <a class="logo"><img src="../MyMBRTLearninglab/code/sources/media/logo.png" height="80"></a> 
+    <nav class="navbar">
+        <ul> 
+            <li class="selected"><a href="index.html">Home</a></li>
+            <li><a href="code/vakken/SD-vak.html">SD</a></li>
+            <li><a href="code/vakken/MV-vak.html">MV</a></li>
+            <li><a href="code/vakken/CT-vak.html">CT</a></li>
+            <li><a href="code/vakken/EC-vak.html">EC</a></li>
+            <li><a href="code/vakken/CR-vak.html">CR</a></li>
+        </ul>
+    </nav>  
+</div>
+<div class="menucontent">
+    <h1>Welkom bij MijnMBRT</h1>
+    <ul>
+        <p><u>Selecteer hierboven</u> een vak om te oefenen, of gebruik een van deze externe tools om te oefenen:</p>
+        <p><a target="_blank" href="https://memoraid.nl/memoraid/search.php?search_term=MBRT&search=">MemorAid &#11088;&#11088;&#11088;&#11088;</a></p>
+        <p><a target="_blank" href="https://fontys.on.worldcat.org/oclc/1083977143">IMAIOS&#11088;&#11088;&#11088;&#11088;</a></p>
+        <p><a target="_blank" href="https://quizlet.com/search?query=mbrt&type=all">Quizlet &#11088;&#11088;&#11088;</a></p>
+        <p><a target="_blank" href="https://purposegames.com/">PurposeGames &#11088;&#11088;&#11088;</a></p>
+        <p><a target="_blank" href="https://anatomylearning.com/">AnatomyLearning&#11088;&#11088;</a></p>        
 
-<div class="vak1">
-    <h1>Welkom MBRT student!</h1>
-    <p>Zoek je een handige studietool om mee te oefenen? 
-    Je bent op het perfecte adres! 
-    Ik ben momenteel erg druk bezig met het bouwen van deze website!</p>
+        
+ </ul>
+</div>
 
-
-    <button class="collapsible">Vakken</button>
-    <div class="content">
-    
-        <h3><u>Vakken:</u></h3>
-        <p><a href="code/vakken/CR-vak.html">Conventionele Radiologie</a></p>
-        <p><a href="code/vakken/CT-vak.html">Computer Tomografie</a></p>
-        <p><a href="code/vakken/MV-vak.html">Medische Vakken</a></p>
-        <p><a href="code/vakken/SD-vak.html">Stralings Deskundigheid</a></p>
-        <p><a href="code/vakken/EC-vak.html">Echo</a></p>
-    </div>
+<div style="font-family:'Maname', sans-serif;" class="menucontent aboutthisproject">
+<u>Over dit project:</u> <br>
+Dit project is gemaakt door Joris van Meerkerk, student aan Fontys Hogeschool in Eindhoven. <br>
+Het doel van dit project is om studenten van de opleiding MBRT te helpen bij het leren en oefenen van de stof voor de verschillende vakken van de opleiding. <br>
+Het project is ontwikkeld met HTML, CSS en JavaScript. <br>
 
     <div class="backgroundcolor-containter">
         <div></div>
@@ -39,22 +54,17 @@
 
 </div>
 
-   <script>
-        var coll = document.getElementsByClassName("collapsible");
-        var i;
+<div class="endofpage">
+    <p>Contact: 603591</p>
+</div>
 
-        for (i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        var content = this.nextElementSibling;
-        if (content.style.display === "block") {
-        content.style.display = "none";
-        } else {
-        content.style.display = "block";
-        }
-    });}
-    </script>
 
+<script>
+    const aboutThisProject = document.querySelector(".aboutthisproject");
+    aboutThisProject.addEventListener("mouseenter", () => {
+        aboutThisProject.classList.add("revealed");
+    }, { once: true });
+</script>
 </body>
 
 </html>
