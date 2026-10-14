@@ -1,59 +1,115 @@
-.collapsible{
-    background-color: #d6d192;
-    cursor:pointer;
 
-    padding:10px;
-    width:477px;
-    border:2px outset;
-    text-align:center;
-    font-size: smaller;
-}
-.active, .collapsible:hover{
-    background-color: #3242;
-    border:2px inset;
-}
-.content{
-    background-color:#ddd787;    
-    padding:0px;
-    display:none;
-    width: auto;
-    
-    border:2px outset;
-    border-color: #0b1941;    
-    transition:max-height 0.2s ease-out;
-}
-.collapsible:after{
-    content: "\002B";
-  font-size: 20px;
-  color: rgb(7, 21, 73);
-  float: right;
-  margin-left:5px;
-}
-.active:after {
-  content: "\2212";
-}
 body{
-    font-family: "poppins";
-    height: 100%;
-    background-image: linear-gradient(to right,rgb(21, 103, 137),rgb(9, 44, 66));
+    background-image:url("../media/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: "Poppins";
+    text-align: center;
 }
-.vak1{
-    background-image:linear-gradient(to left bottom,#ddd787,#a5a163 );
-    float: centre;
-    padding: 30px;
+.menucontent{  
+    clear: both;
+    padding: 0px 0 40px;
+    background-color:#397b9e;
+    color:white;
+    margin-top: 30px;
+    text-decoration-line: none;
+}
+.menucontent h1{
+    font-family:"Rubik" ;
+    font-size: 1000;
+    font-weight: 600;   
+    background-color: rgb(45, 88, 114, 0.873);
+}
+.menucontent p{
+    text-align: left;
+}
+.menucontent ul{
+    max-width: 600px;
+    display:colom;
+    margin-left: 10px;
+    background-color: #397b9e;
+    
+}
+.menucontent a{
+    color:black;
+    text-decoration: none;
+    background-color:rgb(45, 88, 114, 0.873);
+    padding:5px;
     border-radius: 10px;
-    box-shadow: 0 30px 60px rgba(0,0,0,.1);
-    width:500px;    
-    text-align: left;
-    display:flex;
-    flex-direction: column;
-    margin-top: 100px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: left;
+    transition: padding 0.2s;
 }
-p{
-    margin-top: -5px;
-    margin-bottom: 1px;
-    margin-left:10px;
+
+.menucontent a:hover{
+    padding: 7px;
+
+}
+
+.aboutthisproject{
+    bottom: 0px;
+    left: 10px;
+    right: 10px;
+    margin: 0;
+    z-index: 1;
+
+    text-align: left;
+    background-color: rgb(45, 88, 114, 0.873);
+    padding: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    box-shadow:0px 0px 20px rgba(1, 31, 105, 0.561);
+    filter: blur(2px);
+    opacity: 0.5;
+    transition: filter 0.5s, opacity 1s;
+}
+
+.aboutthisproject:hover,
+.aboutthisproject.revealed{
+    filter: blur(0px);
+    opacity: 1;
+}
+.endofpage{
+    background-color: rgb(39, 73, 194);
+    float:bottom;
+    margin-top: 400px;
+}
+
+.logo{
+    display: block;
+    float:left;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.navbar ul{
+    list-style-type: none;
+    padding:0px;
+    margin:0px;
+    margin-top:5px;
+    overflow:hidden;
+    font-size: large;
+}
+.navbar a{
+    color:white;
+    background-color: rgba(18, 58, 82, 0.873);
+    text-decoration: none;
+    padding:10px;
+    display:block;
+    text-align: center;
+    transition: padding .1s;
+}
+.navbar a:hover{
+    background-color:rgb(25, 74, 105, 0.873);
+    padding:13px;
+    cursor: click;
+}
+.navbar li{
+    float:left;
+    border:outset;
+    border-width: 3px;
+    border-color: rgb(7, 44, 70, 0.873);
+    margin-left: 4px;
+    margin-top: 15px;
+}
+.selected{
+    text-decoration-line: underline;
+    text-decoration-color:white;
 }
