@@ -20,7 +20,7 @@
 <!-- ============================================================
      1. KOP  (titel + ondertitel van de quiz)
      ============================================================ -->
-<header><div><h1 id="quiz-titel">Echo: beoordeel de instellingen</h1><p class="sub" id="quiz-ondertitel">Kies per echobeeld: hoger, staat goed of lager</p></div>
+<header><div><h1 id="quiz-titel">Echo: beoordeel de instellingen</h1><p class="sub" id="quiz-ondertitel">Kies per echobeeld het juiste antwoord</p></div>
 <svg id="ecg" viewBox="0 0 160 44" aria-hidden="true"><path pathLength="1" d="M0 36H56L61 36L66 10L72 42L79 18L84 36H160"/></svg></header>
 
 <!-- 2. Hier verschijnt de quiz zelf (wordt automatisch gevuld) -->
@@ -30,6 +30,11 @@
 <footer class="seal"><svg viewBox="0 0 100 100" role="img" aria-label="MBRT studentenquiz"><path d="M16 14H84V52Q84 78 50 90Q16 78 16 52Z" fill="var(--card)" stroke="var(--art)" stroke-width="4"/><path d="M24 52H38L43 42L49 64L55 36L60 52H76" fill="none" stroke="var(--art)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><text x="50" y="73" text-anchor="middle" font-size="13" letter-spacing=".6" fill="var(--mute)" font-family="'Source Sans 3',system-ui,sans-serif">Fontys</text></svg><span><b>MBRT studentenquiz</b><br>Gecontroleerd door een MBRT-student · oefenmateriaal</span></footer>
 
 </main>
+
+<div class="knopterug">
+  <button onclick="history.back()">Terug naar Menu</button>
+
+</div>
 
 
 <!-- ============================================================
@@ -50,6 +55,8 @@
      - p.toelichting  = optioneel: uitleg na het antwoord
      - p.hint         = optioneel: eigen hint voor deze ene vraag
      - data-label     = optioneel: korte naam, ook gebruikt in het eindoverzicht
+     - ul.opties      = optioneel: eigen opties voor deze ene vraag (een <li> per optie,
+                        de volgorde is de volgorde op het scherm)
      - data-opties    = naam van een vaste lijst met opties (zie hieronder).
                         Zonder data-opties trekt de quiz 3 foute opties uit de
                         juiste antwoorden van de andere vragen (data-groep="x").
@@ -57,311 +64,345 @@
 <section id="quiz-inhoud">
 
   <!-- Uitleg op het startscherm -->
-  <div id="uitleg">Je ziet een echobeeld en beoordeelt steeds één instelling: hoger, staat goed of lager. Bij transducer en bodymarker kies je of de instelling goed is. Na elk antwoord zie je de uitleg uit het referentiemateriaal.</div>
+  <div id="uitleg">Je ziet een echobeeld en beoordeelt steeds één instelling. Kies het antwoord dat bij het beeld past. Na elk antwoord zie je de uitleg.</div>
 
   <!-- Hint onder elke vraag (leeg = geen hint) -->
   <p id="standaard-hint"></p>
 
-  <!-- Vaste antwoordopties (de volgorde is de volgorde op het scherm) -->
-  <ul id="opties-hoger-lager"><li>Hoger</li><li>Staat goed</li><li>Lager</li></ul>
-  <ul id="opties-goed-niet"><li>Goed</li><li>Niet goed</li></ul>
+  <!-- Vaste opties per soort vraag (de volgorde is de volgorde op het scherm) -->
+  <ul id="opties-transducer"><li>Goede transducer</li><li>Verkeerde transducer</li></ul>
+  <ul id="opties-diepte"><li>Te diep</li><li>Staat goed</li><li>Te ondiep</li></ul>
+  <ul id="opties-focus"><li>Focus moet hoger</li><li>Focus staat goed</li><li>Focus moet lager</li></ul>
+  <ul id="opties-gain"><li>Gain staat TE HOOG</li><li>Gain staat GOED</li><li>Gain staat TE LAAG</li></ul>
+  <ul id="opties-tgc"><li>Oppervlakkige gedeelte staat te hoog</li><li>Voldoende</li><li>Diepere gedeelte staat te laag</li></ul>
+
 
   <!-- ============ BEELD 1 ============ -->
-  <!-- Vraag 1: beeld 1, Transducer -->
-  <article class="vraag" data-opties="goed-niet" data-label="Beeld 1 · Transducer">
+  <!-- Vraag 1: beeld 1, Transducer (juist: A) -->
+  <article class="vraag" data-opties="transducer" data-label="Beeld 1 · Transducer">
     <img class="foto" src="../sources/media/echo-beeld-1.png" alt="Echobeeld 1">
-    <h3 class="term">Is de transducer goed?</h3>
-    <p class="juist">Goed</p>
-    <p class="toelichting">Goed, de convex transducer met lage frequentie</p>
+    <h3 class="term">Is er een goede keuze gemaakt in het soort transducer?</h3>
+    <p class="juist">Goede transducer</p>
+    <p class="toelichting">Goede transducer, de convex transducer met lage frequentie</p>
   </article>
 
-  <!-- Vraag 2: beeld 1, Diepte -->
-  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 1 · Diepte">
+  <!-- Vraag 2: beeld 1, Diepte (juist: A) -->
+  <article class="vraag" data-opties="diepte" data-label="Beeld 1 · Diepte">
     <img class="foto" src="../sources/media/echo-beeld-1.png" alt="Echobeeld 1">
-    <h3 class="term">Moet de ingestelde diepte hoger of lager?</h3>
-    <p class="juist">Lager</p>
+    <h3 class="term">Is de parameter Diepte goed ingesteld?</h3>
+    <p class="juist">Te diep</p>
     <p class="toelichting">Beetje te diep. Door oppervlakkiger te kiezen zal je framerate en details beter worden</p>
   </article>
 
-  <!-- Vraag 3: beeld 1, Focus -->
-  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 1 · Focus">
+  <!-- Vraag 3: beeld 1, Focus (juist: B) -->
+  <article class="vraag" data-opties="focus" data-label="Beeld 1 · Focus">
     <img class="foto" src="../sources/media/echo-beeld-1.png" alt="Echobeeld 1">
-    <h3 class="term">Moet de focus hoger of lager in het beeld staan?</h3>
-    <p class="juist">Staat goed</p>
+    <h3 class="term">Is de parameter Focus goed ingesteld?</h3>
+    <p class="juist">Focus staat goed</p>
     <p class="toelichting">Goed</p>
   </article>
 
-  <!-- Vraag 4: beeld 1, Gain -->
-  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 1 · Gain">
+  <!-- Vraag 4: beeld 1, Gain (juist: A) -->
+  <article class="vraag" data-opties="gain" data-label="Beeld 1 · Gain">
     <img class="foto" src="../sources/media/echo-beeld-1.png" alt="Echobeeld 1">
-    <h3 class="term">Moet de gain hoger of lager?</h3>
-    <p class="juist">Lager</p>
+    <h3 class="term">Is de parameter Gain goed ingesteld?</h3>
+    <p class="juist">Gain staat TE HOOG</p>
     <p class="toelichting">Teveel, terug draaien zodat bloed anechogeen wordt</p>
   </article>
 
-  <!-- Vraag 5: beeld 1, TGC -->
-  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 1 · TGC">
+  <!-- Vraag 5: beeld 1, TGC (juist: B) -->
+  <article class="vraag" data-opties="tgc" data-label="Beeld 1 · TGC">
     <img class="foto" src="../sources/media/echo-beeld-1.png" alt="Echobeeld 1">
-    <h3 class="term">Moet de TGC hoger of lager?</h3>
-    <p class="juist">Staat goed</p>
+    <h3 class="term">Is de parameter TGC goed ingesteld?</h3>
+    <p class="juist">Voldoende</p>
     <p class="toelichting">Voldoende</p>
   </article>
 
-  <!-- Vraag 6: beeld 1, Bodymarker -->
-  <article class="vraag" data-opties="goed-niet" data-label="Beeld 1 · Bodymarker">
+  <!-- Vraag 6: beeld 1, Bodymarker (juist: A) -->
+  <article class="vraag" data-label="Beeld 1 · Bodymarker">
     <img class="foto" src="../sources/media/echo-beeld-1.png" alt="Echobeeld 1">
-    <h3 class="term">Is de bodymarker goed?</h3>
-    <p class="juist">Niet goed</p>
+    <h3 class="term">Bedenk voor jezelf of deze bodymarker goed staat ingesteld, kies dan goed/fout.</h3>
+    <ul class="opties">
+      <li>Verkeerd, dit is longitudinaal en niet transversaal</li>
+      <li>Goed, dit is longitudinaal</li>
+      <li>Verkeerd, dit is transversaal en niet longitudinaal</li>
+    </ul>
+    <p class="juist">Verkeerd, dit is longitudinaal en niet transversaal</p>
     <p class="toelichting">Verkeerd, dit is longitudinaal en niet transversaal</p>
   </article>
 
 
   <!-- ============ BEELD 2 ============ -->
-  <!-- Vraag 7: beeld 2, Transducer -->
-  <article class="vraag" data-opties="goed-niet" data-label="Beeld 2 · Transducer">
+  <!-- Vraag 7: beeld 2, Transducer (juist: A) -->
+  <article class="vraag" data-opties="transducer" data-label="Beeld 2 · Transducer">
     <img class="foto" src="../sources/media/echo-beeld-2.png" alt="Echobeeld 2">
-    <h3 class="term">Is de transducer goed?</h3>
-    <p class="juist">Goed</p>
+    <h3 class="term">Is er een goede keuze gemaakt in het soort transducer?</h3>
+    <p class="juist">Goede transducer</p>
     <p class="toelichting">Goed, de convex transducer met lage frequentie</p>
   </article>
 
-  <!-- Vraag 8: beeld 2, Diepte -->
-  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 2 · Diepte">
+  <!-- Vraag 8: beeld 2, Diepte (juist: B) -->
+  <article class="vraag" data-opties="diepte" data-label="Beeld 2 · Diepte">
     <img class="foto" src="../sources/media/echo-beeld-2.png" alt="Echobeeld 2">
-    <h3 class="term">Moet de ingestelde diepte hoger of lager?</h3>
+    <h3 class="term">Is de parameter Diepte goed ingesteld?</h3>
     <p class="juist">Staat goed</p>
     <p class="toelichting">Goed</p>
   </article>
 
-  <!-- Vraag 9: beeld 2, Focus -->
-  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 2 · Focus">
+  <!-- Vraag 9: beeld 2, Focus (juist: B) -->
+  <article class="vraag" data-opties="focus" data-label="Beeld 2 · Focus">
     <img class="foto" src="../sources/media/echo-beeld-2.png" alt="Echobeeld 2">
-    <h3 class="term">Moet de focus hoger of lager in het beeld staan?</h3>
-    <p class="juist">Staat goed</p>
+    <h3 class="term">Is de parameter Focus goed ingesteld?</h3>
+    <p class="juist">Focus staat goed</p>
     <p class="toelichting">Goed</p>
   </article>
 
-  <!-- Vraag 10: beeld 2, Gain -->
-  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 2 · Gain">
+  <!-- Vraag 10: beeld 2, Gain (juist: B) -->
+  <article class="vraag" data-opties="gain" data-label="Beeld 2 · Gain">
     <img class="foto" src="../sources/media/echo-beeld-2.png" alt="Echobeeld 2">
-    <h3 class="term">Moet de gain hoger of lager?</h3>
-    <p class="juist">Staat goed</p>
+    <h3 class="term">Is de parameter Gain goed ingesteld?</h3>
+    <p class="juist">Gain staat GOED</p>
     <p class="toelichting">Goed</p>
   </article>
 
-  <!-- Vraag 11: beeld 2, TGC -->
-  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 2 · TGC">
+  <!-- Vraag 11: beeld 2, TGC (juist: C) -->
+  <article class="vraag" data-opties="tgc" data-label="Beeld 2 · TGC">
     <img class="foto" src="../sources/media/echo-beeld-2.png" alt="Echobeeld 2">
-    <h3 class="term">Moet de TGC van de diepere structuren hoger of lager?</h3>
-    <p class="juist">Hoger</p>
+    <h3 class="term">Is de parameter TGC goed ingesteld?</h3>
+    <p class="juist">Diepere gedeelte staat te laag</p>
     <p class="toelichting">Aan de oppervlakte goed, de dieper gelegen structuren moeten meer versterkt worden</p>
   </article>
 
-  <!-- Vraag 12: beeld 2, Bodymarker -->
-  <article class="vraag" data-opties="goed-niet" data-label="Beeld 2 · Bodymarker">
+  <!-- Vraag 12: beeld 2, Bodymarker (juist: A) -->
+  <article class="vraag" data-label="Beeld 2 · Bodymarker">
     <img class="foto" src="../sources/media/echo-beeld-2.png" alt="Echobeeld 2">
-    <h3 class="term">Is de bodymarker goed?</h3>
-    <p class="juist">Niet goed</p>
+    <h3 class="term">Bedenk voor jezelf of deze bodymarker goed staat ingesteld, kies dan goed/fout.</h3>
+    <ul class="opties">
+      <li>Matig, hij staat nu wel erg naar lateraal, terwijl hij in het mediaanvlak moet staan</li>
+      <li>Goed</li>
+      <li>Verkeerd, verplaatsen naar sinister</li>
+    </ul>
+    <p class="juist">Matig, hij staat nu wel erg naar lateraal, terwijl hij in het mediaanvlak moet staan</p>
     <p class="toelichting">Matig, Hij staat nu wel heel erg naar lateraal, terwijl hij in het mediaanvlak moet staan</p>
   </article>
 
 
   <!-- ============ BEELD 3 ============ -->
-  <!-- Vraag 13: beeld 3, Transducer -->
-  <article class="vraag" data-opties="goed-niet" data-label="Beeld 3 · Transducer">
+  <!-- Vraag 13: beeld 3, Transducer (juist: A) -->
+  <article class="vraag" data-opties="transducer" data-label="Beeld 3 · Transducer">
     <img class="foto" src="../sources/media/echo-beeld-3.png" alt="Echobeeld 3">
-    <h3 class="term">Is de transducer goed?</h3>
-    <p class="juist">Goed</p>
+    <h3 class="term">Is er een goede keuze gemaakt in het soort transducer?</h3>
+    <p class="juist">Goede transducer</p>
     <p class="toelichting">Goed, de convex transducer met lage frequentie</p>
   </article>
 
-  <!-- Vraag 14: beeld 3, Diepte -->
-  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 3 · Diepte">
+  <!-- Vraag 14: beeld 3, Diepte (juist: A) -->
+  <article class="vraag" data-opties="diepte" data-label="Beeld 3 · Diepte">
     <img class="foto" src="../sources/media/echo-beeld-3.png" alt="Echobeeld 3">
-    <h3 class="term">Moet de ingestelde diepte hoger of lager?</h3>
-    <p class="juist">Lager</p>
+    <h3 class="term">Is de parameter Diepte goed ingesteld?</h3>
+    <p class="juist">Te diep</p>
     <p class="toelichting">Te diep, Door oppervlakkiger te kiezen zal je framerate en details beter worden</p>
   </article>
 
-  <!-- Vraag 15: beeld 3, Focus -->
-  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 3 · Focus">
+  <!-- Vraag 15: beeld 3, Focus (juist: B) -->
+  <article class="vraag" data-opties="focus" data-label="Beeld 3 · Focus">
     <img class="foto" src="../sources/media/echo-beeld-3.png" alt="Echobeeld 3">
-    <h3 class="term">Moet de focus hoger of lager in het beeld staan?</h3>
-    <p class="juist">Staat goed</p>
+    <h3 class="term">Is de parameter Focus goed ingesteld?</h3>
+    <p class="juist">Focus staat goed</p>
     <p class="toelichting">Goed</p>
   </article>
 
-  <!-- Vraag 16: beeld 3, Gain -->
-  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 3 · Gain">
+  <!-- Vraag 16: beeld 3, Gain (juist: B) -->
+  <article class="vraag" data-opties="gain" data-label="Beeld 3 · Gain">
     <img class="foto" src="../sources/media/echo-beeld-3.png" alt="Echobeeld 3">
-    <h3 class="term">Moet de gain hoger of lager?</h3>
-    <p class="juist">Staat goed</p>
+    <h3 class="term">Is de parameter Gain goed ingesteld?</h3>
+    <p class="juist">Gain staat GOED</p>
     <p class="toelichting">Goed</p>
   </article>
 
-  <!-- Vraag 17: beeld 3, TGC -->
-  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 3 · TGC">
+  <!-- Vraag 17: beeld 3, TGC (juist: B) -->
+  <article class="vraag" data-opties="tgc" data-label="Beeld 3 · TGC">
     <img class="foto" src="../sources/media/echo-beeld-3.png" alt="Echobeeld 3">
-    <h3 class="term">Moet de TGC hoger of lager?</h3>
-    <p class="juist">Staat goed</p>
+    <h3 class="term">Is de parameter TGC goed ingesteld?</h3>
+    <p class="juist">Voldoende</p>
     <p class="toelichting">Voldoende</p>
   </article>
 
-  <!-- Vraag 18: beeld 3, Bodymarker -->
-  <article class="vraag" data-opties="goed-niet" data-label="Beeld 3 · Bodymarker">
+  <!-- Vraag 18: beeld 3, Bodymarker (juist: C) -->
+  <article class="vraag" data-label="Beeld 3 · Bodymarker">
     <img class="foto" src="../sources/media/echo-beeld-3.png" alt="Echobeeld 3">
-    <h3 class="term">Is de bodymarker goed?</h3>
-    <p class="juist">Goed</p>
+    <h3 class="term">Bedenk voor jezelf of deze bodymarker goed staat ingesteld, kies dan goed/fout.</h3>
+    <ul class="opties">
+      <li>Verschuiven naar transversaal</li>
+      <li>180 graden draaien</li>
+      <li>Staat goed</li>
+    </ul>
+    <p class="juist">Staat goed</p>
     <p class="toelichting">Goed</p>
   </article>
 
 
   <!-- ============ BEELD 4 ============ -->
-  <!-- Vraag 19: beeld 4, Transducer -->
-  <article class="vraag" data-opties="goed-niet" data-label="Beeld 4 · Transducer">
+  <!-- Vraag 19: beeld 4, Transducer (juist: A) -->
+  <article class="vraag" data-opties="transducer" data-label="Beeld 4 · Transducer">
     <img class="foto" src="../sources/media/echo-beeld-4.png" alt="Echobeeld 4">
-    <h3 class="term">Is de transducer goed?</h3>
-    <p class="juist">Goed</p>
+    <h3 class="term">Is er een goede keuze gemaakt in het soort transducer?</h3>
+    <p class="juist">Goede transducer</p>
     <p class="toelichting">Goed, de convex transducer met lage frequentie</p>
   </article>
 
-  <!-- Vraag 20: beeld 4, Diepte -->
-  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 4 · Diepte">
+  <!-- Vraag 20: beeld 4, Diepte (juist: A) -->
+  <article class="vraag" data-opties="diepte" data-label="Beeld 4 · Diepte">
     <img class="foto" src="../sources/media/echo-beeld-4.png" alt="Echobeeld 4">
-    <h3 class="term">Moet de ingestelde diepte hoger of lager?</h3>
-    <p class="juist">Lager</p>
+    <h3 class="term">Is de parameter Diepte goed ingesteld?</h3>
+    <p class="juist">Te diep</p>
     <p class="toelichting">Te diep, Door oppervlakkiger te kiezen zal je framerate en details beter worden</p>
   </article>
 
-  <!-- Vraag 21: beeld 4, Focus -->
-  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 4 · Focus">
+  <!-- Vraag 21: beeld 4, Focus (juist: B) -->
+  <article class="vraag" data-opties="focus" data-label="Beeld 4 · Focus">
     <img class="foto" src="../sources/media/echo-beeld-4.png" alt="Echobeeld 4">
-    <h3 class="term">Moet de focus hoger of lager in het beeld staan?</h3>
-    <p class="juist">Staat goed</p>
+    <h3 class="term">Is de parameter Focus goed ingesteld?</h3>
+    <p class="juist">Focus staat goed</p>
     <p class="toelichting">Goed</p>
   </article>
 
-  <!-- Vraag 22: beeld 4, Gain -->
-  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 4 · Gain">
+  <!-- Vraag 22: beeld 4, Gain (juist: B) -->
+  <article class="vraag" data-opties="gain" data-label="Beeld 4 · Gain">
     <img class="foto" src="../sources/media/echo-beeld-4.png" alt="Echobeeld 4">
-    <h3 class="term">Moet de gain hoger of lager?</h3>
-    <p class="juist">Staat goed</p>
+    <h3 class="term">Is de parameter Gain goed ingesteld?</h3>
+    <p class="juist">Gain staat GOED</p>
     <p class="toelichting">Goed</p>
   </article>
 
-  <!-- Vraag 23: beeld 4, TGC -->
-  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 4 · TGC">
+  <!-- Vraag 23: beeld 4, TGC (juist: B) -->
+  <article class="vraag" data-opties="tgc" data-label="Beeld 4 · TGC">
     <img class="foto" src="../sources/media/echo-beeld-4.png" alt="Echobeeld 4">
-    <h3 class="term">Moet de TGC hoger of lager?</h3>
-    <p class="juist">Staat goed</p>
+    <h3 class="term">Is de parameter TGC goed ingesteld?</h3>
+    <p class="juist">Voldoende</p>
     <p class="toelichting">Voldoende, verwachting is dat als je de diepte verbetert ook de TGC te vlak staat. Bij een kleine diepte is er weinig verschil</p>
   </article>
 
-  <!-- Vraag 24: beeld 4, Bodymarker -->
-  <article class="vraag" data-opties="goed-niet" data-label="Beeld 4 · Bodymarker">
+  <!-- Vraag 24: beeld 4, Bodymarker (juist: B) -->
+  <article class="vraag" data-label="Beeld 4 · Bodymarker">
     <img class="foto" src="../sources/media/echo-beeld-4.png" alt="Echobeeld 4">
-    <h3 class="term">Is de bodymarker goed?</h3>
-    <p class="juist">Goed</p>
-    <p class="toelichting">Transversaal beeld van de bifurcatie, dus thv de nave</p>
+    <h3 class="term">Bedenk voor jezelf of deze bodymarker goed staat ingesteld, kies dan goed/fout.</h3>
+    <ul class="opties">
+      <li>Staat goed</li>
+      <li>Moet naar transversaal beeld van bifurcatie, dus thv de navel</li>
+      <li>Verschuiven naar boven de navel</li>
+    </ul>
+    <p class="juist">Moet naar transversaal beeld van bifurcatie, dus thv de navel</p>
+    <p class="toelichting">Transversaal beeld van de bifurcatie, dus ter hoogte van de navel</p>
   </article>
 
 
   <!-- ============ BEELD 5 ============ -->
-  <!-- Vraag 25: beeld 5, Transducer -->
-  <article class="vraag" data-opties="goed-niet" data-label="Beeld 5 · Transducer">
+  <!-- Vraag 25: beeld 5, Transducer (juist: A) -->
+  <article class="vraag" data-opties="transducer" data-label="Beeld 5 · Transducer">
     <img class="foto" src="../sources/media/echo-beeld-5.png" alt="Echobeeld 5">
-    <h3 class="term">Is de transducer goed?</h3>
-    <p class="juist">Goed</p>
+    <h3 class="term">Is er een goede keuze gemaakt in het soort transducer?</h3>
+    <p class="juist">Goede transducer</p>
     <p class="toelichting">Goed, de convex transducer met lage frequentie</p>
   </article>
 
-  <!-- Vraag 26: beeld 5, Diepte -->
-  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 5 · Diepte">
+  <!-- Vraag 26: beeld 5, Diepte (juist: B) -->
+  <article class="vraag" data-opties="diepte" data-label="Beeld 5 · Diepte">
     <img class="foto" src="../sources/media/echo-beeld-5.png" alt="Echobeeld 5">
-    <h3 class="term">Moet de ingestelde diepte hoger of lager?</h3>
+    <h3 class="term">Is de parameter Diepte goed ingesteld?</h3>
     <p class="juist">Staat goed</p>
     <p class="toelichting">Goed</p>
   </article>
 
-  <!-- Vraag 27: beeld 5, Focus -->
-  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 5 · Focus">
+  <!-- Vraag 27: beeld 5, Focus (juist: C) -->
+  <article class="vraag" data-opties="focus" data-label="Beeld 5 · Focus">
     <img class="foto" src="../sources/media/echo-beeld-5.png" alt="Echobeeld 5">
-    <h3 class="term">Moet de focus hoger of lager in het beeld staan?</h3>
-    <p class="juist">Lager</p>
+    <h3 class="term">Is de parameter Focus goed ingesteld?</h3>
+    <p class="juist">Focus moet lager</p>
     <p class="toelichting">Te hoog, Door deze op de juiste hoogte te zetten zal je laterale resolutie verbeteren</p>
   </article>
 
-  <!-- Vraag 28: beeld 5, Gain -->
-  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 5 · Gain">
+  <!-- Vraag 28: beeld 5, Gain (juist: B) -->
+  <article class="vraag" data-opties="gain" data-label="Beeld 5 · Gain">
     <img class="foto" src="../sources/media/echo-beeld-5.png" alt="Echobeeld 5">
-    <h3 class="term">Moet de gain hoger of lager?</h3>
-    <p class="juist">Staat goed</p>
+    <h3 class="term">Is de parameter Gain goed ingesteld?</h3>
+    <p class="juist">Gain staat GOED</p>
     <p class="toelichting">Goed</p>
   </article>
 
-  <!-- Vraag 29: beeld 5, TGC -->
-  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 5 · TGC">
+  <!-- Vraag 29: beeld 5, TGC (juist: C) -->
+  <article class="vraag" data-opties="tgc" data-label="Beeld 5 · TGC">
     <img class="foto" src="../sources/media/echo-beeld-5.png" alt="Echobeeld 5">
-    <h3 class="term">Moet de TGC van de diepere structuren hoger of lager?</h3>
-    <p class="juist">Hoger</p>
-    <p class="toelichting">Matig, door de dieper gelegen gebieden meer te versterken zal er een homogener beeld ontstaan</p>
+    <h3 class="term">Is de parameter TGC goed ingesteld?</h3>
+    <p class="juist">Diepere gedeelte staat te laag</p>
+    <p class="toelichting">Matig, Door dieper gelegen gebieden meer te versterken zal er een homogener beeld ontstaan</p>
   </article>
 
-  <!-- Vraag 30: beeld 5, Bodymarker -->
-  <article class="vraag" data-opties="goed-niet" data-label="Beeld 5 · Bodymarker">
+  <!-- Vraag 30: beeld 5, Bodymarker (juist: C) -->
+  <article class="vraag" data-label="Beeld 5 · Bodymarker">
     <img class="foto" src="../sources/media/echo-beeld-5.png" alt="Echobeeld 5">
-    <h3 class="term">Is de bodymarker goed?</h3>
-    <p class="juist">Goed</p>
+    <h3 class="term">Bedenk voor jezelf of deze bodymarker goed staat ingesteld, kies dan goed/fout.</h3>
+    <ul class="opties">
+      <li>Te veel naar lateraal</li>
+      <li>Te veel naar craniaal (moet onder de navel)</li>
+      <li>Staat goed</li>
+    </ul>
+    <p class="juist">Staat goed</p>
     <p class="toelichting">Goed</p>
   </article>
 
 
   <!-- ============ BEELD 6 ============ -->
-  <!-- Vraag 31: beeld 6, Transducer -->
-  <article class="vraag" data-opties="goed-niet" data-label="Beeld 6 · Transducer">
+  <!-- Vraag 31: beeld 6, Transducer (juist: A) -->
+  <article class="vraag" data-opties="transducer" data-label="Beeld 6 · Transducer">
     <img class="foto" src="../sources/media/echo-beeld-6.png" alt="Echobeeld 6">
-    <h3 class="term">Is de transducer goed?</h3>
-    <p class="juist">Niet goed</p>
-    <p class="toelichting">Goed, de convex transducer met lage frequentie. De transducer staat verkeerd om, waardoor de beeldorientatie niet is zoals afgesproken</p>
+    <h3 class="term">Is er een goede keuze gemaakt in het soort transducer?</h3>
+    <p class="juist">Goede transducer</p>
+    <p class="toelichting">Goed, de convex diepte met lage frequentie. MAAR, de transducer staat verkeerd om, waardoor de beeldorientatie niet is zoals afgesproken</p>
   </article>
 
-  <!-- Vraag 32: beeld 6, Diepte -->
-  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 6 · Diepte">
+  <!-- Vraag 32: beeld 6, Diepte (juist: B) -->
+  <article class="vraag" data-opties="diepte" data-label="Beeld 6 · Diepte">
     <img class="foto" src="../sources/media/echo-beeld-6.png" alt="Echobeeld 6">
-    <h3 class="term">Moet de ingestelde diepte hoger of lager?</h3>
+    <h3 class="term">Is de parameter Diepte goed ingesteld?</h3>
     <p class="juist">Staat goed</p>
+    <p class="toelichting">Goed, de convex diepte met lage frequentie. MAAR, de diepte staat verkeerd om, waardoor de beeldorientatie niet is zoals afgesproken</p>
+  </article>
+
+  <!-- Vraag 33: beeld 6, Focus (juist: B) -->
+  <article class="vraag" data-opties="focus" data-label="Beeld 6 · Focus">
+    <img class="foto" src="../sources/media/echo-beeld-6.png" alt="Echobeeld 6">
+    <h3 class="term">Is de parameter Focus goed ingesteld?</h3>
+    <p class="juist">Focus staat goed</p>
     <p class="toelichting">Goed</p>
   </article>
 
-  <!-- Vraag 33: beeld 6, Focus -->
-  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 6 · Focus">
+  <!-- Vraag 34: beeld 6, Gain (juist: B) -->
+  <article class="vraag" data-opties="gain" data-label="Beeld 6 · Gain">
     <img class="foto" src="../sources/media/echo-beeld-6.png" alt="Echobeeld 6">
-    <h3 class="term">Moet de focus hoger of lager in het beeld staan?</h3>
-    <p class="juist">Staat goed</p>
+    <h3 class="term">Is de parameter Gain goed ingesteld?</h3>
+    <p class="juist">Gain staat GOED</p>
     <p class="toelichting">Goed</p>
   </article>
 
-  <!-- Vraag 34: beeld 6, Gain -->
-  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 6 · Gain">
+  <!-- Vraag 35: beeld 6, TGC (juist: B) -->
+  <article class="vraag" data-opties="tgc" data-label="Beeld 6 · TGC">
     <img class="foto" src="../sources/media/echo-beeld-6.png" alt="Echobeeld 6">
-    <h3 class="term">Moet de gain hoger of lager?</h3>
-    <p class="juist">Staat goed</p>
-    <p class="toelichting">Goed</p>
-  </article>
-
-  <!-- Vraag 35: beeld 6, TGC -->
-  <article class="vraag" data-opties="hoger-lager" data-label="Beeld 6 · TGC">
-    <img class="foto" src="../sources/media/echo-beeld-6.png" alt="Echobeeld 6">
-    <h3 class="term">Moet de TGC hoger of lager?</h3>
-    <p class="juist">Staat goed</p>
+    <h3 class="term">Is de parameter TGC goed ingesteld?</h3>
+    <p class="juist">Voldoende</p>
     <p class="toelichting">Voldoende</p>
   </article>
 
-  <!-- Vraag 36: beeld 6, Bodymarker -->
-  <article class="vraag" data-opties="goed-niet" data-label="Beeld 6 · Bodymarker">
+  <!-- Vraag 36: beeld 6, Bodymarker (juist: C) -->
+  <article class="vraag" data-label="Beeld 6 · Bodymarker">
     <img class="foto" src="../sources/media/echo-beeld-6.png" alt="Echobeeld 6">
-    <h3 class="term">Is de bodymarker goed?</h3>
-    <p class="juist">Goed</p>
+    <h3 class="term">Bedenk voor jezelf of deze bodymarker goed staat ingesteld, kies dan goed/fout.</h3>
+    <ul class="opties">
+      <li>Staat te veel naar lateraal</li>
+      <li>Staat te veel naar mediaal</li>
+      <li>Staat goed</li>
+    </ul>
+    <p class="juist">Staat goed</p>
     <p class="toelichting">Goed</p>
   </article>
 
@@ -387,6 +428,7 @@ const D=[...inhoud.querySelectorAll(".vraag")].map(v=>{
     a:v.querySelector(".juist").textContent.trim(),
     g:v.dataset.groep||"x",
     set:v.dataset.opties||"",
+    o:[...v.querySelectorAll(".opties li")].map(li=>li.textContent.trim()),
     label:v.dataset.label||"",
     foto:img?img.getAttribute("src"):"",
     alt:img?img.getAttribute("alt")||"":"",
@@ -408,7 +450,7 @@ function start(){
 function run(){deck=shuffle(D);pos=0;score=0;done=0;total=D.length;missed=[];tried=new Set();show()}
 
 function show(){
-  const it=deck[pos];locked=false;cur={it,opts:it.set?(sets[it.set]||[]).map(t=>({t,ok:t===it.a})):shuffle([{t:it.a,ok:true},...shuffle([...new Set(G[it.g])].filter(x=>x!==it.a)).slice(0,3).map(t=>({t,ok:false}))])};
+  const it=deck[pos];locked=false;cur={it,opts:(it.o.length||it.set)?(it.o.length?it.o:(sets[it.set]||[])).map(t=>({t,ok:t===it.a})):shuffle([{t:it.a,ok:true},...shuffle([...new Set(G[it.g])].filter(x=>x!==it.a)).slice(0,3).map(t=>({t,ok:false}))])};
   app.innerHTML=`<div class="card"><div class="bar"><i style="width:${Math.round(done/total*100)}%"></i></div>
   <div class="meta"><span>Goed beantwoord: ${done} van ${total}${tried.has(it)?" · herhaling":""}</span><span>Nog te gaan: ${deck.length-pos}</span></div>
   ${it.foto?`<img class="foto" src="${it.foto}" alt="${it.alt}">`:""}${it.label?`<p class="mute">${it.label}</p>`:""}<div class="q">${it.q}</div>${it.h?`<p class="hint">${it.h}</p>`:""}
@@ -430,7 +472,7 @@ function pick(i){
   const fb=document.getElementById("fb");
   fb.className="fb "+(right?"ok":"bad");
   const o=D.find(d=>d.a===cur.opts[i].t);
-  fb.textContent=right?"Goed!":"Niet juist. Het antwoord is: "+good+"."+(it.set||!o?"":" "+cur.opts[i].t+" hoort bij: "+o.q.toLowerCase()+".")+" Deze vraag komt straks terug.";
+  fb.textContent=right?"Goed!":"Niet juist. Het antwoord is: "+good+"."+(it.set||it.o.length||!o?"":" "+cur.opts[i].t+" hoort bij: "+o.q.toLowerCase()+".")+" Deze vraag komt straks terug.";
   document.getElementById("toel").textContent=it.t?"Uitleg: "+it.t:"";
   const last=pos===deck.length-1&&right;
   document.getElementById("nx").innerHTML=`<button class="btn" id="next">${last?"Bekijk resultaat":"Volgende vraag"}</button>`;
